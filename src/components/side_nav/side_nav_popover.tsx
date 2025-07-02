@@ -121,11 +121,6 @@ export const SideNavPopover = ({
     [trigger, hasContent, isOpen, handleTriggerClick, open, focusFirst]
   );
 
-  const maxHeight =
-    container?.getBoundingClientRect().height -
-    TOP_BAR_HEIGHT -
-    TOP_BAR_POPOVER_GAP;
-
   return (
     <div
       css={css`
@@ -156,8 +151,8 @@ export const SideNavPopover = ({
       >
         <div
           ref={popoverRef}
-          style={{ maxHeight }}
           css={css`
+            max-height: 500px;
             ${useEuiOverflowScroll("y")}
           `}
         >
