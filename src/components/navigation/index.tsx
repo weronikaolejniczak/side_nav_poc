@@ -191,7 +191,7 @@ export const MainNavigation = (): JSX.Element => {
           {PRIMARY_MENU_FOOTER_ITEMS.map((item) => (
             <SideNav.Popover
               key={item.id}
-              isSidePanelOpen={!isCollapsed}
+              isSidePanelOpen={!isCollapsed && item.id === sidePanelContent?.id}
               hasContent={MenuUtils.hasSubmenu(item)}
               persistent={false}
               container={document.documentElement}
