@@ -45,7 +45,6 @@ export const MainNavigation = (): JSX.Element => {
               {section.items.map((subItem) => (
                 <SecondaryMenu.Item
                   key={subItem.id}
-                  isHome={MenuUtils.isHomeItem(item, subItem)}
                   isCurrent={
                     (subItem.href && currentSubpage === subItem.href) ||
                     (!currentSubpage && subItem.href === currentPage)
@@ -138,7 +137,6 @@ export const MainNavigation = (): JSX.Element => {
                 <SecondaryMenu.Item
                   key={item.id}
                   iconType={item.iconType}
-                  isHome={false}
                   isCurrent={
                     item.href === currentPage || item.href === currentSubpage
                   }

@@ -5,7 +5,6 @@ import { css } from "@emotion/react";
 
 export type SecondaryMenuItemProps = {
   key: string;
-  isHome?: boolean;
   iconType?: IconType;
   isCurrent: boolean;
   children: ReactNode;
@@ -21,7 +20,6 @@ export type SecondaryMenuItemProps = {
  * The only style overrides are making the button labels left-aligned.
  */
 export const SecondaryMenuItem = ({
-  isHome,
   iconType,
   isCurrent,
   children,
@@ -34,7 +32,7 @@ export const SecondaryMenuItem = ({
 
   const iconProps = {
     iconSide: iconSide as "left" | "right",
-    iconType: iconType ? iconType : isHome ? "home" : undefined,
+    iconType,
   };
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {

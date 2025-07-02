@@ -56,16 +56,6 @@ export class MenuUtils {
   }
 
   /**
-   * Checks if a menu item is the home/landing page for its parent
-   */
-  static isHomeItem(
-    parentItem: MenuItem,
-    childItem: SecondaryMenuItem
-  ): boolean {
-    return !!(parentItem.href && childItem.href === parentItem.href);
-  }
-
-  /**
    * Generates aria-label for menu items
    */
   static generateAriaLabel(
