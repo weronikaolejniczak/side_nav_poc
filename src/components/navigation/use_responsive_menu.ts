@@ -3,7 +3,7 @@ import { useCallback, useRef, useState, RefObject, useEffect } from "react";
 import { MenuItem } from "../../types/navigation";
 import { PRIMARY_MENU_ITEMS } from "../../constants";
 
-const NON_COLLAPSED_MENU_ITEM_HEIGHT = 51;
+const EXPANDED_MENU_ITEM_HEIGHT = 51;
 const COLLAPSED_MENU_ITEM_HEIGHT = 32;
 const MAX_MENU_ITEMS = 9;
 
@@ -68,7 +68,7 @@ export function useResponsiveMenu(isCollapsed: boolean): ResponsiveMenuState {
     const menuRect = menuElement.getBoundingClientRect();
     const itemHeight = isCollapsed
       ? COLLAPSED_MENU_ITEM_HEIGHT
-      : NON_COLLAPSED_MENU_ITEM_HEIGHT;
+      : EXPANDED_MENU_ITEM_HEIGHT;
 
     const computedStyle = window.getComputedStyle(menuElement);
     const itemGap = parseFloat(computedStyle.getPropertyValue("gap")) || 0;
