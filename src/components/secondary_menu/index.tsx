@@ -40,7 +40,7 @@ export const SecondaryMenu: SecondaryMenuComponent = ({
           border-radius: ${euiTheme.border.radius.medium};
           // move into one declaration; 20px is forced by dividers
           padding: ${euiTheme.size.base} 20px;
-          padding-bottom: ${euiTheme.size.s};
+          padding-bottom: ${euiTheme.size.xs};
         `}
         size="xs"
       >
