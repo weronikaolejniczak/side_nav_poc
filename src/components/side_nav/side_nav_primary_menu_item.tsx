@@ -10,6 +10,8 @@ import {
   useEuiTheme,
 } from "@elastic/eui";
 
+import { useMenuItemClick } from "../../hooks/use_menu_item_click";
+
 export type SideNavPrimaryMenuItemProps = {
   children: ReactNode;
   hasContent?: boolean;
@@ -41,10 +43,7 @@ export const SideNavPrimaryMenuItem = forwardRef<
   ): JSX.Element => {
     const { euiTheme } = useEuiTheme();
 
-    const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
-      onClick?.();
-    };
+    const handleClick = useMenuItemClick(onClick);
 
     const label = (
       <EuiText

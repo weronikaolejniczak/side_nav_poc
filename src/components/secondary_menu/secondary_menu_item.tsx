@@ -3,6 +3,8 @@ import { EuiButton, EuiButtonEmpty, IconType, useEuiTheme } from "@elastic/eui";
 import { ReactNode } from "react";
 import { css } from "@emotion/react";
 
+import { useMenuItemClick } from "../../hooks/use_menu_item_click";
+
 export type SecondaryMenuItemProps = {
   key: string;
   iconType?: IconType;
@@ -45,10 +47,7 @@ export const SecondaryMenuItem = ({
     }
   `;
 
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    onClick?.();
-  };
+  const handleClick = useMenuItemClick(onClick);
 
   return (
     <li>
