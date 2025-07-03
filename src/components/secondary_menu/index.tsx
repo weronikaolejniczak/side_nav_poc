@@ -37,13 +37,13 @@ export const SecondaryMenu: SecondaryMenuComponent = ({
           background: ${isPanel
             ? euiTheme.colors.backgroundBaseSubdued
             : euiTheme.colors.backgroundBasePlain};
+          border-radius: ${euiTheme.border.radius.medium};
           // move into one declaration; 20px is forced by dividers
           padding: ${euiTheme.size.base} 20px;
           padding-bottom: ${euiTheme.size.s};
         `}
         size="xs"
       >
-        {/* Is this an h4 though? What is the hierarchy on the page? */}
         <h4>{title}</h4>
       </EuiTitle>
       {children}
