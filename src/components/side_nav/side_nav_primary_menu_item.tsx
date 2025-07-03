@@ -5,6 +5,7 @@ import {
   EuiIcon,
   EuiScreenReaderOnly,
   EuiText,
+  EuiToolTip,
   IconType,
   useEuiTheme,
 } from "@elastic/eui";
@@ -16,6 +17,7 @@ export type SideNavPrimaryMenuItemProps = {
   href?: string;
   iconType?: IconType;
   onClick?: () => void;
+  hasContent?: boolean;
 };
 
 export const SideNavPrimaryMenuItem = forwardRef<
@@ -23,7 +25,16 @@ export const SideNavPrimaryMenuItem = forwardRef<
   SideNavPrimaryMenuItemProps
 >(
   (
-    { isCurrent, iconType, children, isCollapsed, onClick, href, ...props },
+    {
+      isCurrent,
+      iconType,
+      children,
+      isCollapsed,
+      onClick,
+      href,
+      hasContent,
+      ...props
+    },
     ref: ForwardedRef<HTMLAnchorElement>
   ): JSX.Element => {
     const { euiTheme } = useEuiTheme();
@@ -40,10 +51,9 @@ export const SideNavPrimaryMenuItem = forwardRef<
     );
 
     const wrapperStyles = css`
-      width: 100%;
       display: flex;
-      align-items: center;
       justify-content: center;
+      width: 100%;
     `;
 
     const buttonStyles = css`
@@ -113,31 +123,47 @@ export const SideNavPrimaryMenuItem = forwardRef<
       }
     `;
 
-    return (
-      <div css={wrapperStyles}>
-        <a
-          ref={ref}
-          aria-pressed={isCurrent}
-          css={buttonStyles}
-          role="menuitem"
-          href={href}
-          onClick={handleClick}
-          {...props}
-        >
-          <div className="iconWrapper">
-            <EuiIcon
-              aria-hidden
-              color="currentColor"
-              type={iconType || "empty"}
-            />
-          </div>
-          {isCollapsed ? (
-            <EuiScreenReaderOnly>{label}</EuiScreenReaderOnly>
-          ) : (
-            label
-          )}
-        </a>
-      </div>
+    const menuItem = (
+      <a
+        ref={ref}
+        aria-pressed={isCurrent}
+        css={buttonStyles}
+        role="menuitem"
+        href={href}
+        onClick={handleClick}
+        {...props}
+      >
+        <div className="iconWrapper">
+          <EuiIcon
+            aria-hidden
+            color="currentColor"
+            type={iconType || "empty"}
+          />
+        </div>
+        {isCollapsed ? (
+          <EuiScreenReaderOnly>{label}</EuiScreenReaderOnly>
+        ) : (
+          label
+        )}
+      </a>
     );
+
+    // Show tooltip when collapsed and item doesn't have a submenu
+    if (isCollapsed && !hasContent) {
+      return (
+        <EuiToolTip
+          anchorProps={{
+            css: wrapperStyles,
+          }}
+          content={children}
+          position="right"
+          disableScreenReaderOutput
+        >
+          {menuItem}
+        </EuiToolTip>
+      );
+    }
+
+    return menuItem;
   }
 );

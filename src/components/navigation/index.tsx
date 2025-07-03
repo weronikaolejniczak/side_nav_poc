@@ -97,6 +97,7 @@ export const MainNavigation = (): JSX.Element => {
             iconType={item.iconType}
             isCollapsed={isCollapsed}
             isCurrent={item.id === sidePanelContent?.id}
+            hasContent={MenuUtils.hasSubmenu(item)}
             onClick={() => handleMainItemClick(item)}
           >
             {item.label}
@@ -115,7 +116,7 @@ export const MainNavigation = (): JSX.Element => {
     return (
       <SideNav.Popover
         container={document.documentElement}
-        hasContent={true}
+        hasContent
         isSidePanelOpen={false}
         persistent
         trigger={
@@ -125,6 +126,7 @@ export const MainNavigation = (): JSX.Element => {
             )}
             iconType="boxesHorizontal"
             isCollapsed={isCollapsed}
+            hasContent
           >
             More
           </SideNav.PrimaryMenuItem>
@@ -199,6 +201,7 @@ export const MainNavigation = (): JSX.Element => {
                 <SideNav.FooterItem
                   isCurrent={item.id === sidePanelContent?.id}
                   onClick={() => navigateTo(item)}
+                  hasContent={MenuUtils.hasSubmenu(item)}
                   onKeyDown={(e: React.KeyboardEvent) => {
                     if (e.key === "Enter") {
                       e.preventDefault();

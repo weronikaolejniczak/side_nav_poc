@@ -35,6 +35,15 @@ export const SecondaryMenuItem = ({
     iconType,
   };
 
+  const styles = css`
+    // 6px comes from Figma, no token
+    padding: 6px ${euiTheme.size.s};
+
+    > span {
+      justify-content: ${iconSide === "left" ? "flex-start" : "space-between"};
+    }
+  `;
+
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     onClick?.();
@@ -44,16 +53,7 @@ export const SecondaryMenuItem = ({
     <li>
       {isCurrent ? (
         <EuiButton
-          css={css`
-            // 6px comes from Figma, no token
-            padding: 6px ${euiTheme.size.s};
-
-            > span {
-              justify-content: ${iconSide === "left"
-                ? "flex-start"
-                : "space-between"};
-            }
-          `}
+          css={styles}
           fullWidth
           href={href}
           onClick={handleClick}
@@ -67,16 +67,7 @@ export const SecondaryMenuItem = ({
         </EuiButton>
       ) : (
         <EuiButtonEmpty
-          css={css`
-            padding: 6px ${euiTheme.size.s};
-            width: 100%;
-
-            > span {
-              justify-content: ${iconSide === "left"
-                ? "flex-start"
-                : "space-between"};
-            }
-          `}
+          css={styles}
           color="text"
           href={href}
           onClick={handleClick}

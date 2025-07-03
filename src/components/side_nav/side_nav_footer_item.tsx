@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { forwardRef, ForwardedRef } from "react";
 import { css } from "@emotion/react";
-import { EuiButtonIcon, EuiButtonIconProps, IconType } from "@elastic/eui";
+import {
+  EuiButtonIcon,
+  EuiButtonIconProps,
+  EuiToolTip,
+  IconType,
+} from "@elastic/eui";
 
 export interface SideNavFooterItemProps
   extends Omit<EuiButtonIconProps, "iconType"> {
@@ -10,6 +15,7 @@ export interface SideNavFooterItemProps
   onKeyDown?: (e: React.KeyboardEvent) => void;
   label: string;
   iconType?: IconType;
+  hasContent?: boolean;
 }
 
 /**
@@ -20,27 +26,44 @@ export const SideNavFooterItem = forwardRef<
   SideNavFooterItemProps
 >(
   (
-    { isCurrent, label, iconType, ...props },
+    { isCurrent, label, iconType, hasContent, ...props },
     ref: ForwardedRef<HTMLDivElement>
   ) => {
+    const wrapperStyles = css`
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    `;
+
+    const menuItem = (
+      <EuiButtonIcon
+        aria-label={label}
+        aria-pressed={isCurrent}
+        color={isCurrent ? "primary" : "text"}
+        display={isCurrent ? "base" : "empty"}
+        iconType={iconType || "empty"}
+        size="s"
+        {...props}
+      />
+    );
+
+    if (!hasContent)
+      return (
+        <EuiToolTip
+          anchorProps={{
+            css: wrapperStyles,
+          }}
+          disableScreenReaderOutput
+          content={label}
+          position="right"
+        >
+          {menuItem}
+        </EuiToolTip>
+      );
+
     return (
-      <div
-        ref={ref}
-        css={css`
-          display: flex;
-          justify-content: center;
-          width: 100%;
-        `}
-      >
-        <EuiButtonIcon
-          aria-label={label}
-          aria-pressed={isCurrent}
-          color={isCurrent ? "primary" : "text"}
-          display={isCurrent ? "base" : "empty"}
-          iconType={iconType || "empty"}
-          size="s"
-          {...props}
-        />
+      <div ref={ref} css={wrapperStyles}>
+        {menuItem}
       </div>
     );
   }
