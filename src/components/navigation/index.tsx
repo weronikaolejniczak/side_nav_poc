@@ -12,7 +12,7 @@ import { LOGO, PRIMARY_MENU_FOOTER_ITEMS } from "../../constants";
 import { useNavigation } from "../../contexts/navigation_context";
 import { useResponsiveMenu } from "./use_responsive_menu";
 import { MenuItem } from "../../types/navigation";
-import { MenuUtils } from "../../utils/menu_utils";
+import { hasSubmenu } from "./has_submenu";
 
 export const MainNavigation = (): JSX.Element => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -36,7 +36,7 @@ export const MainNavigation = (): JSX.Element => {
       isPanel: boolean,
       closePopover?: () => void
     ): JSX.Element | null => {
-      if (!MenuUtils.hasSubmenu(item)) return null;
+      if (!hasSubmenu(item)) return null;
 
       return (
         <SecondaryMenu title={item.label} isPanel={isPanel}>
@@ -89,7 +89,7 @@ export const MainNavigation = (): JSX.Element => {
       <SideNav.Popover
         key={item.id}
         container={document.documentElement}
-        hasContent={MenuUtils.hasSubmenu(item)}
+        hasContent={hasSubmenu(item)}
         isSidePanelOpen={!isCollapsed && item.id === sidePanelContent?.id}
         trigger={
           <SideNav.PrimaryMenuItem
@@ -97,7 +97,7 @@ export const MainNavigation = (): JSX.Element => {
             iconType={item.iconType}
             isCollapsed={isCollapsed}
             isCurrent={item.id === sidePanelContent?.id}
-            hasContent={MenuUtils.hasSubmenu(item)}
+            hasContent={hasSubmenu(item)}
             onClick={() => handleMainItemClick(item)}
           >
             {item.label}
@@ -195,14 +195,14 @@ export const MainNavigation = (): JSX.Element => {
             <SideNav.Popover
               key={item.id}
               isSidePanelOpen={!isCollapsed && item.id === sidePanelContent?.id}
-              hasContent={MenuUtils.hasSubmenu(item)}
+              hasContent={hasSubmenu(item)}
               persistent={false}
               container={document.documentElement}
               trigger={
                 <SideNav.FooterItem
                   isCurrent={item.id === sidePanelContent?.id}
                   onClick={() => navigateTo(item)}
-                  hasContent={MenuUtils.hasSubmenu(item)}
+                  hasContent={hasSubmenu(item)}
                   onKeyDown={(e: React.KeyboardEvent) => {
                     if (e.key === "Enter") {
                       e.preventDefault();
