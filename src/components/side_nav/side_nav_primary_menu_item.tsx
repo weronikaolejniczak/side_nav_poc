@@ -11,13 +11,14 @@ import {
 } from "@elastic/eui";
 
 export type SideNavPrimaryMenuItemProps = {
-  isCollapsed: boolean;
-  isCurrent: boolean;
   children: ReactNode;
+  hasContent?: boolean;
+  horizontal?: boolean;
   href?: string;
   iconType?: IconType;
+  isCollapsed?: boolean;
+  isCurrent: boolean;
   onClick?: () => void;
-  hasContent?: boolean;
 };
 
 export const SideNavPrimaryMenuItem = forwardRef<
@@ -26,13 +27,14 @@ export const SideNavPrimaryMenuItem = forwardRef<
 >(
   (
     {
-      isCurrent,
-      iconType,
       children,
-      isCollapsed,
-      onClick,
-      href,
       hasContent,
+      horizontal,
+      href,
+      iconType,
+      isCollapsed,
+      isCurrent,
+      onClick,
       ...props
     },
     ref: ForwardedRef<HTMLAnchorElement>
@@ -45,7 +47,11 @@ export const SideNavPrimaryMenuItem = forwardRef<
     };
 
     const label = (
-      <EuiText className="label" size="xs" textAlign="center">
+      <EuiText
+        className="label"
+        size={horizontal ? "s" : "xs"}
+        textAlign="center"
+      >
         {children}
       </EuiText>
     );
@@ -60,14 +66,12 @@ export const SideNavPrimaryMenuItem = forwardRef<
       position: relative;
       overflow: hidden;
       align-items: center;
-      justify-content: center;
+      justify-content: ${horizontal ? "initial" : "center"};
       display: flex;
-      flex-direction: column;
+      flex-direction: ${horizontal ? "row" : "column"};
       // 3px is from Figma; there is no token
-      gap: 3px;
-      // We apply the outline to the icon wrapper
+      gap: ${horizontal ? euiTheme.size.s : "3px"};
       outline: none !important;
-
       color: ${isCurrent
         ? euiTheme.components.buttons.textColorPrimary
         : euiTheme.components.buttons.textColorText};
@@ -82,6 +86,8 @@ export const SideNavPrimaryMenuItem = forwardRef<
         border-radius: ${euiTheme.border.radius.medium};
         background-color: ${isCurrent
           ? euiTheme.components.buttons.backgroundPrimary
+          : horizontal
+          ? euiTheme.colors.backgroundBaseSubdued
           : euiTheme.components.buttons.backgroundText};
         z-index: 1;
       }
@@ -149,7 +155,7 @@ export const SideNavPrimaryMenuItem = forwardRef<
     );
 
     // Show tooltip when collapsed and item doesn't have a submenu
-    if (isCollapsed && !hasContent) {
+    if (!horizontal && isCollapsed && !hasContent) {
       return (
         <EuiToolTip
           anchorProps={{

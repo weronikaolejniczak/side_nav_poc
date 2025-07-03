@@ -134,14 +134,15 @@ export const MainNavigation = (): JSX.Element => {
       >
         {(closePopover) => (
           <SecondaryMenu title="More" isPanel={false}>
-            <SecondaryMenu.Section label={null}>
+            <SecondaryMenu.Section hasGap label={null}>
               {overflowMenuItems.map((item) => (
-                <SecondaryMenu.Item
+                <SideNav.PrimaryMenuItem
                   key={item.id}
                   iconType={item.iconType}
                   isCurrent={
                     item.href === currentPage || item.href === currentSubpage
                   }
+                  horizontal
                   href={item.href}
                   onClick={() => {
                     navigateTo(item);
@@ -149,7 +150,7 @@ export const MainNavigation = (): JSX.Element => {
                   }}
                 >
                   {item.label}
-                </SecondaryMenu.Item>
+                </SideNav.PrimaryMenuItem>
               ))}
             </SecondaryMenu.Section>
           </SecondaryMenu>

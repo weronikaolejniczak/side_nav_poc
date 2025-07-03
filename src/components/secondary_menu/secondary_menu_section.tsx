@@ -4,8 +4,9 @@ import { ReactNode } from "react";
 import { css } from "@emotion/react";
 
 export type SecondaryMenuSectionProps = {
-  label: string | null;
   children: ReactNode;
+  hasGap?: boolean;
+  label: string | null;
 };
 
 /**
@@ -22,8 +23,9 @@ export type SecondaryMenuSectionProps = {
  * In a real application, we should always use `euiTheme` for consistency.
  */
 export const SecondaryMenuSection = ({
-  label,
   children,
+  hasGap,
+  label,
 }: SecondaryMenuSectionProps): JSX.Element => {
   const { euiTheme } = useEuiTheme();
 
@@ -61,8 +63,8 @@ export const SecondaryMenuSection = ({
         css={css`
           display: flex;
           flex-direction: column;
-          // gap: ${euiTheme.size.xxs};
           width: 236px;
+          ${hasGap ? `gap: ${euiTheme.size.xs};` : ""}
         `}
       >
         {children}
