@@ -38,6 +38,7 @@ export const SecondaryMenuItem = ({
   const styles = css`
     // 6px comes from Figma, no token
     padding: 6px ${euiTheme.size.s};
+    width: 100%;
 
     > span {
       justify-content: ${iconSide === "left" ? "flex-start" : "space-between"};
