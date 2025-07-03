@@ -6,6 +6,7 @@ import { NestedMenuContext } from "./use_nested_menu";
 import { Panel } from "./menu_panel";
 import { BackButton } from "./back_button";
 import { Item } from "./menu_item";
+import { PrimaryMenuItem } from "./primary_menu_item";
 
 type NestedSecondaryMenuProps = {
   children: ReactNode;
@@ -53,6 +54,7 @@ interface NestedSecondaryMenuComponent extends FC<NestedSecondaryMenuProps> {
   Panel: typeof Panel;
   BackButton: typeof BackButton;
   Item: typeof Item;
+  PrimaryMenuItem: typeof PrimaryMenuItem;
   Section: typeof SecondaryMenu.Section;
 }
 
@@ -62,4 +64,5 @@ export const NestedSecondaryMenu: NestedSecondaryMenuComponent =
 NestedSecondaryMenu.Panel = Panel;
 NestedSecondaryMenu.BackButton = BackButton;
 NestedSecondaryMenu.Item = Item;
+NestedSecondaryMenu.PrimaryMenuItem = PrimaryMenuItem;
 NestedSecondaryMenu.Section = SecondaryMenu.Section;

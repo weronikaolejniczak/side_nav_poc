@@ -144,7 +144,7 @@ export const MainNavigation = (): JSX.Element => {
                     const hasSubItems = hasSubmenu(item);
 
                     return (
-                      <NestedSecondaryMenu.Item
+                      <NestedSecondaryMenu.PrimaryMenuItem
                         key={item.id}
                         iconType={item.iconType}
                         isCurrent={isCurrent}
@@ -161,7 +161,7 @@ export const MainNavigation = (): JSX.Element => {
                         }}
                       >
                         {item.label}
-                      </NestedSecondaryMenu.Item>
+                      </NestedSecondaryMenu.PrimaryMenuItem>
                     );
                   })}
                 </NestedSecondaryMenu.Section>
@@ -208,18 +208,20 @@ export const MainNavigation = (): JSX.Element => {
                     item.href === currentPage || item.href === currentSubpage;
 
                   return (
-                    <SecondaryMenu.Item
+                    <SideNav.PrimaryMenuItem
                       key={item.id}
                       iconType={item.iconType}
                       isCurrent={isCurrent}
                       href={item.href}
+                      hasContent
                       onClick={() => {
                         navigateTo(item);
                         closePopover();
                       }}
+                      horizontal
                     >
                       {item.label}
-                    </SecondaryMenu.Item>
+                    </SideNav.PrimaryMenuItem>
                   );
                 })}
               </SecondaryMenu.Section>
@@ -241,7 +243,9 @@ export const MainNavigation = (): JSX.Element => {
     <Layout isSidePanelOpen={isSidePanelOpen} isCollapsed={isCollapsed}>
       <TopBar>
         <EuiButtonIcon
-          aria-label={isCollapsed ? "Expand navigation menu" : "Collapse navigation menu"}
+          aria-label={
+            isCollapsed ? "Expand navigation menu" : "Collapse navigation menu"
+          }
           aria-controls="primary-navigation"
           aria-expanded={!isCollapsed}
           color="text"
