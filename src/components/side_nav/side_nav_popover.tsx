@@ -20,8 +20,8 @@ import {
 
 const TOP_BAR_HEIGHT = 48;
 const TOP_BAR_POPOVER_GAP = 8;
-const SIDE_NAV_POPOVER_GAP = 4;
 const BOTTOM_POPOVER_GAP = 4;
+const POPOVER_OFFSET = 5;
 
 export type SideNavPopoverProps = {
   container: HTMLElement;
@@ -132,22 +132,22 @@ export const SideNavPopover = ({
       onBlur={handleBlur}
     >
       <EuiPopover
-        anchorPosition="rightCenter"
-        button={enhancedTrigger}
-        closePopover={handleClose}
-        container={container}
-        display="block"
-        isOpen={hasContent && !isSidePanelOpen && isOpen}
+        anchorPosition="rightUp"
         buffer={[
           TOP_BAR_HEIGHT + TOP_BAR_POPOVER_GAP,
           0,
           BOTTOM_POPOVER_GAP,
-          SIDE_NAV_POPOVER_GAP,
+          POPOVER_OFFSET,
         ]}
+        button={enhancedTrigger}
+        closePopover={handleClose}
+        container={container}
+        display="block"
+        hasArrow={false}
+        isOpen={hasContent && !isSidePanelOpen && isOpen}
+        offset={POPOVER_OFFSET}
         ownFocus={false}
-        offset={-2}
         panelPaddingSize="none"
-        panelStyle={{ height: "fit-content" }}
       >
         <div
           ref={popoverRef}
