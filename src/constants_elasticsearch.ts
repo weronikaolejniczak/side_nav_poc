@@ -30,7 +30,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   {
     id: "connectors",
     label: "Connectors",
-    iconType: "connectorsApp",
+    iconType: "info",
     href: "/connectors",
   },
   {
