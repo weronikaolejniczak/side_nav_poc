@@ -1,8 +1,5 @@
 import { MenuItem } from "./types/navigation";
 
-// Excluding "More" menu
-export const PRIMARY_MENU_ITEM_LIMIT = 8;
-
 export const LOGO = {
   label: "Elasticsearch",
   logoType: "logoElasticsearch",

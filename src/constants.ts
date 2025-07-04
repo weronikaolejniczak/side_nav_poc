@@ -1,20 +1,11 @@
 import { MenuItem } from "./types/navigation";
 
-// Excluding "More" menu
-export const PRIMARY_MENU_ITEM_LIMIT = 8;
-
 export const LOGO = {
-  label: "Observability",
-  logoType: "logoObservability",
+  label: "Security",
+  logoType: "logoSecurity",
 };
 
 export const PRIMARY_MENU_ITEMS: MenuItem[] = [
-  {
-    id: "overview",
-    label: "Overview",
-    iconType: "info",
-    href: "/overview",
-  },
   {
     id: "discover",
     label: "Discover",
@@ -27,103 +18,248 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
     iconType: "dashboardApp",
     href: "/dashboards",
   },
-  { id: "alerts", label: "Alerts", iconType: "info", href: "/alerts" },
-  { id: "cases", label: "Cases", iconType: "casesApp", href: "/cases" },
   {
-    id: "slos",
-    label: "SLOs",
+    id: "rules",
+    label: "Rules",
     iconType: "info",
-    href: "/slos",
-  },
-  {
-    id: "applications",
-    label: "Applications",
-    iconType: "info",
-    href: "/applications/service-inventory",
+    href: "/rules",
     sections: [
       {
-        id: "applications-section-1",
-        label: null,
+        id: "management",
+        label: "Management",
         items: [
           {
-            id: "service-inventory",
-            label: "Service Inventory",
-            href: "/applications/service-inventory",
+            id: "detection-rules",
+            label: "Detection rules (SIEM)",
+            href: "/rules/management/detection-rules",
           },
-          { id: "traces", label: "Traces", href: "/applications/traces" },
           {
-            id: "dependencies",
-            label: "Dependencies",
-            href: "/applications/dependencies",
+            id: "benchmarks",
+            label: "Benchmarks",
+            href: "/rules/management/benchmarks",
           },
-          { id: "settings", label: "Settings", href: "/applications/settings" },
+          {
+            id: "shared-exceptions",
+            label: "Shared exceptions lists",
+            href: "/rules/management/shared-exceptions",
+          },
+          {
+            id: "siem-rule-migrations",
+            label: "SIEM rule migrations",
+            href: "/rules/management/siem-rule-migrations",
+          },
         ],
       },
       {
-        id: "synthetics",
-        label: "Synthetics",
+        id: "discover",
+        label: "Discover",
         items: [
-          { id: "overview", label: "Overview", href: "/synthetics/overview" },
           {
-            id: "tls-certificates",
-            label: "TLS certificates",
-            href: "/synthetics/tls-certificates",
+            id: "mitre",
+            label: "MITRE ATT&CK®",
+            href: "/rules/discover/mitre",
           },
         ],
       },
     ],
   },
   {
-    id: "infrastructure",
-    label: "Infrastructure",
-    iconType: "info",
-    href: "/infrastructure/inventory",
+    id: "coverage",
+    label: "Coverage",
+    iconType: "visGauge",
+    href: "/coverage",
+  },
+  {
+    id: "alerts",
+    label: "Alerts",
+    iconType: "bell",
+    href: "/alerts",
+  },
+  {
+    id: "attack_discovery",
+    label: "Attack discovery",
+    iconType: "lensApp",
+    href: "/attack-discovery",
+  },
+  {
+    id: "findings",
+    label: "Findings",
+    iconType: "reportingApp",
+    href: "/findings",
+  },
+  {
+    id: "cases",
+    label: "Cases",
+    iconType: "casesApp",
+    href: "/cases",
+  },
+  {
+    id: "investigations",
+    label: "Investigations",
+    iconType: "casesApp",
+    href: "/investigations",
     sections: [
       {
-        id: "infrastructure-section-1",
+        id: "investigations-section",
         label: null,
         items: [
           {
-            id: "inventory",
-            label: "Infrastructure Inventory",
-            href: "/infrastructure/inventory",
+            id: "investigations-timelines",
+            label: "Timelines",
+            href: "/investigations/timelines",
           },
-          { id: "hosts", label: "Hosts", href: "/infrastructure/hosts" },
+          {
+            id: "investigations-notes",
+            label: "Notes",
+            href: "/investigations/notes",
+          },
+          {
+            id: "investigations-osquery",
+            label: "Osquery",
+            href: "/investigations/osquery",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "intelligence",
+    label: "Intelligence",
+    iconType: "securityAnalyticsApp",
+    href: "/intelligence",
+  },
+  {
+    id: "explore",
+    label: "Explore",
+    iconType: "search",
+    href: "/explore",
+    sections: [
+      {
+        id: "explore-section",
+        label: null,
+        items: [
+          {
+            id: "hosts",
+            label: "Hosts",
+            href: "/explore/hosts",
+          },
+          {
+            id: "network",
+            label: "Network",
+            href: "/explore/network",
+          },
+          {
+            id: "users",
+            label: "Users",
+            href: "/explore/users",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "assets",
+    label: "Assets",
+    iconType: "indexManagementApp",
+    href: "/assets",
+    sections: [
+      {
+        id: "fleet",
+        label: "Fleet",
+        items: [
+          {
+            id: "agents",
+            label: "Agents",
+            href: "/assets/fleet/agents",
+          },
+          {
+            id: "policies",
+            label: "Policies",
+            href: "/assets/fleet/policies",
+          },
+          {
+            id: "enrollment-tokens",
+            label: "Enrollment tokens",
+            href: "/assets/fleet/enrollment-tokens",
+          },
+          {
+            id: "uninstall-tokens",
+            label: "Uninstall tokens",
+            href: "/assets/fleet/uninstall-tokens",
+          },
+          {
+            id: "data-streams",
+            label: "Data streams",
+            href: "/assets/fleet/data-streams",
+          },
           {
             id: "settings",
             label: "Settings",
-            href: "/infrastructure/settings",
+            href: "/assets/fleet/settings",
+          },
+        ],
+      },
+      {
+        id: "endpoints",
+        label: "Endpoints",
+        items: [
+          {
+            id: "endpoints-list",
+            label: "Endpoints",
+            href: "/assets/endpoints/list",
+          },
+          {
+            id: "endpoint-policies",
+            label: "Policies",
+            href: "/assets/endpoints/policies",
+          },
+          {
+            id: "trusted-applications",
+            label: "Trusted applications",
+            href: "/assets/endpoints/trusted-applications",
+          },
+          {
+            id: "event-filters",
+            label: "Event filters",
+            href: "/assets/endpoints/event-filters",
+          },
+          {
+            id: "host-isolation-exceptions",
+            label: "Host isolation exceptions",
+            href: "/assets/endpoints/host-isolation-exceptions",
+          },
+          {
+            id: "blocklist",
+            label: "Blocklist",
+            href: "/assets/endpoints/blocklist",
+          },
+          {
+            id: "response-actions-history",
+            label: "Response actions history",
+            href: "/assets/endpoints/response-actions-history",
           },
         ],
       },
     ],
   },
   {
-    id: "ai-assistant",
-    label: "AI Assistant",
-    iconType: "info",
-    href: "/ai-assistant",
-  },
-  {
-    id: "streams",
-    label: "Streams",
-    iconType: "info",
-    href: "/streams",
-  },
-  {
-    id: "machine-learning",
+    id: "machine_learning",
     label: "Machine Learning",
-    iconType: "info",
+    iconType: "machineLearningApp",
     href: "/ml/overview",
     sections: [
       {
         id: "ml-section-1",
         label: null,
         items: [
-          { id: "overview", label: "Overview", href: "/ml/overview" },
+          {
+            id: "overview",
+            label: "Overview",
+            href: "/ml/overview",
+          },
           {
             id: "data-visualizer",
-            label: "Data Visualizer",
+            label: "Data visualizer",
             href: "/ml/data-visualizer",
           },
         ],
@@ -138,9 +274,9 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
             href: "/ml/anomaly-detection/anomaly-explorer",
           },
           {
-            id: "single-metrics-viewer",
-            label: "Single metrics viewer",
-            href: "/ml/anomaly-detection/single-metrics-viewer",
+            id: "single-metric-viewer",
+            label: "Single metric viewer",
+            href: "/ml/anomaly-detection/single-metric-viewer",
           },
         ],
       },
@@ -149,9 +285,9 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
         label: "Data frame analytics",
         items: [
           {
-            id: "results-explorer",
-            label: "Results explorer",
-            href: "/ml/data-frame-analytics/results-explorer",
+            id: "result-explorer",
+            label: "Result explorer",
+            href: "/ml/data-frame-analytics/result-explorer",
           },
           {
             id: "analytics-map",
