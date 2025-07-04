@@ -152,7 +152,7 @@ export const SideNavPopover = ({
         <div
           ref={popoverRef}
           css={css`
-            max-height: 500px;
+            max-height: 600px;
             ${useEuiOverflowScroll("y")}
           `}
         >
