@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 
 import { appendIconComponentCache } from "@elastic/eui/es/components/icon/icon";
+import { icon as EuiApps } from "@elastic/eui/es/components/icon/assets/apps";
 import { icon as EuiArrowRight } from "@elastic/eui/es/components/icon/assets/arrow_right";
 import { icon as EuiBell } from "@elastic/eui/es/components/icon/assets/bell";
 import { icon as EuiCases } from "@elastic/eui/es/components/icon/assets/app_cases";
@@ -29,6 +30,8 @@ import { icon as EuiSecurityAnalytics } from "@elastic/eui/es/components/icon/as
 import { icon as EuiTransitionLeftIn } from "@elastic/eui/es/components/icon/assets/transitionLeftIn";
 import { icon as EuiTransitionLeftOut } from "@elastic/eui/es/components/icon/assets/transitionLeftOut";
 import { icon as EuiVisGauge } from "@elastic/eui/es/components/icon/assets/vis_gauge";
+import { icon as EuiStorage } from "@elastic/eui/es/components/icon/assets/storage";
+import { icon as EuiLogstashQueue } from "@elastic/eui/es/components/icon/assets/logstash_queue";
 
 import App from "./App";
 
@@ -37,6 +40,7 @@ if (!rootElement) throw new Error("Failed to find the root element");
 const root = createRoot(rootElement);
 
 appendIconComponentCache({
+  apps: EuiApps,
   arrowRight: EuiArrowRight, // semantically it's chevron right
   bell: EuiBell,
   boxesHorizontal: EuiEllipsis, // in Figma the icon is `ellipsis` and with circles, not boxes
@@ -62,9 +66,11 @@ appendIconComponentCache({
   reportingApp: EuiReporting,
   search: EuiSearch,
   securityAnalyticsApp: EuiSecurityAnalytics,
+  storage: EuiStorage,
   transitionLeftIn: EuiTransitionLeftIn,
   transitionLeftOut: EuiTransitionLeftOut,
   visGauge: EuiVisGauge,
+  logstashQueue: EuiLogstashQueue,
 });
 
 root.render(<App />);

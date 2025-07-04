@@ -1,5 +1,8 @@
 import { MenuItem } from "./types/navigation";
 
+// Excluding "More" menu
+export const PRIMARY_MENU_ITEM_LIMIT = 8;
+
 export const LOGO = {
   label: "Observability",
   logoType: "logoObservability",
@@ -24,18 +27,18 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
     iconType: "dashboardApp",
     href: "/dashboards",
   },
-  { id: "alerts", label: "Alerts", iconType: "info", href: "/alerts" },
+  { id: "alerts", label: "Alerts", iconType: "bell", href: "/alerts" },
   { id: "cases", label: "Cases", iconType: "casesApp", href: "/cases" },
   {
     id: "slos",
     label: "SLOs",
-    iconType: "info",
+    iconType: "visGauge",
     href: "/slos",
   },
   {
     id: "applications",
     label: "Applications",
-    iconType: "info",
+    iconType: "apps",
     href: "/applications/service-inventory",
     sections: [
       {
@@ -73,7 +76,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   {
     id: "infrastructure",
     label: "Infrastructure",
-    iconType: "info",
+    iconType: "storage",
     href: "/infrastructure/inventory",
     sections: [
       {
@@ -104,13 +107,13 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   {
     id: "streams",
     label: "Streams",
-    iconType: "info",
+    iconType: "logstashQueue",
     href: "/streams",
   },
   {
     id: "machine-learning",
     label: "Machine Learning",
-    iconType: "info",
+    iconType: "machineLearningApp",
     href: "/ml/overview",
     sections: [
       {
