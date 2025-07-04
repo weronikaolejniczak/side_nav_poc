@@ -1,17 +1,11 @@
 import { MenuItem } from "./types/navigation";
 
 export const LOGO = {
-  label: "Observability",
-  logoType: "logoObservability",
+  label: "Elasticsearch",
+  logoType: "logoElasticsearch",
 };
 
 export const PRIMARY_MENU_ITEMS: MenuItem[] = [
-  {
-    id: "overview",
-    label: "Overview",
-    iconType: "info",
-    href: "/overview",
-  },
   {
     id: "discover",
     label: "Discover",
@@ -24,161 +18,53 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
     iconType: "dashboardApp",
     href: "/dashboards",
   },
-  { id: "alerts", label: "Alerts", iconType: "info", href: "/alerts" },
-  { id: "cases", label: "Cases", iconType: "casesApp", href: "/cases" },
   {
-    id: "slos",
-    label: "SLOs",
-    iconType: "info",
-    href: "/slos",
+    id: "index_management",
+    label: "Index management",
+    iconType: "indexManagementApp",
+    href: "/index-management",
   },
   {
-    id: "apps",
-    label: "Apps",
+    id: "connectors",
+    label: "Connectors",
     iconType: "info",
-    href: "/apps/service-inventory",
-    sections: [
-      {
-        id: "apps-section-1",
-        label: null,
-        items: [
-          {
-            id: "service-inventory",
-            label: "Service inventory",
-            href: "/apps/service-inventory",
-          },
-          { id: "traces", label: "Traces", href: "/apps/traces" },
-          {
-            id: "dependencies",
-            label: "Dependencies",
-            href: "/apps/dependencies",
-          },
-          { id: "settings", label: "Settings", href: "/apps/settings" },
-        ],
-      },
-      {
-        id: "synthetics",
-        label: "Synthetics",
-        items: [
-          { id: "overview", label: "Overview", href: "/synthetics/overview" },
-          {
-            id: "tls-certificates",
-            label: "TLS certificates",
-            href: "/synthetics/tls-certificates",
-          },
-        ],
-      },
-    ],
+    href: "/connectors",
   },
   {
-    id: "infrastructure",
-    label: "Infrastructure",
-    iconType: "info",
-    href: "/infrastructure/inventory",
-    sections: [
-      {
-        id: "infrastructure-section-1",
-        label: null,
-        items: [
-          {
-            id: "inventory",
-            label: "Infrastructure inventory",
-            href: "/infrastructure/inventory",
-          },
-          { id: "hosts", label: "Hosts", href: "/infrastructure/hosts" },
-          {
-            id: "settings",
-            label: "Settings",
-            href: "/infrastructure/settings",
-          },
-        ],
-      },
-    ],
+    id: "web_crawlers",
+    label: "Web crawlers",
+    iconType: "managementApp",
+    href: "/web-crawlers",
   },
   {
-    id: "ai-assistant",
-    label: "AI assistant",
-    iconType: "info",
-    href: "/ai-assistant",
+    id: "dev_tools",
+    label: "Dev tools",
+    iconType: "devToolsApp",
+    href: "/dev-tools",
   },
   {
-    id: "streams",
-    label: "Streams",
-    iconType: "info",
-    href: "/streams",
+    id: "playground",
+    label: "Playground",
+    iconType: "console",
+    href: "/playground",
   },
   {
-    id: "machine-learning",
-    label: "Machine learning",
-    iconType: "info",
-    href: "/ml/overview",
-    sections: [
-      {
-        id: "ml-section-1",
-        label: null,
-        items: [
-          { id: "overview", label: "Overview", href: "/ml/overview" },
-          {
-            id: "data-visualizer",
-            label: "Data visualizer",
-            href: "/ml/data-visualizer",
-          },
-        ],
-      },
-      {
-        id: "anomaly-detection",
-        label: "Anomaly detection",
-        items: [
-          {
-            id: "anomaly-explorer",
-            label: "Anomaly explorer",
-            href: "/ml/anomaly-detection/anomaly-explorer",
-          },
-          {
-            id: "single-metrics-viewer",
-            label: "Single metrics viewer",
-            href: "/ml/anomaly-detection/single-metrics-viewer",
-          },
-        ],
-      },
-      {
-        id: "data-frame-analytics",
-        label: "Data frame analytics",
-        items: [
-          {
-            id: "results-explorer",
-            label: "Results explorer",
-            href: "/ml/data-frame-analytics/results-explorer",
-          },
-          {
-            id: "analytics-map",
-            label: "Analytics map",
-            href: "/ml/data-frame-analytics/analytics-map",
-          },
-        ],
-      },
-      {
-        id: "aiops-labs",
-        label: "AIOps labs",
-        items: [
-          {
-            id: "log-rate-analysis",
-            label: "Log rate analysis",
-            href: "/ml/aiops-labs/log-rate-analysis",
-          },
-          {
-            id: "log-pattern-analysis",
-            label: "Log pattern analysis",
-            href: "/ml/aiops-labs/log-pattern-analysis",
-          },
-          {
-            id: "change-point-detection",
-            label: "Change point detection",
-            href: "/ml/aiops-labs/change-point-detection",
-          },
-        ],
-      },
-    ],
+    id: "inference_endpoints",
+    label: "Inference endpoints",
+    iconType: "machineLearningApp",
+    href: "/inference-endpoints",
+  },
+  {
+    id: "synonyms",
+    label: "Synonyms",
+    iconType: "indexPatternApp",
+    href: "/synonyms",
+  },
+  {
+    id: "maps",
+    label: "Maps",
+    iconType: "gisApp",
+    href: "/maps",
   },
 ];
 
