@@ -50,6 +50,13 @@ export const SideNavPrimaryMenuItem = forwardRef<
         className="label"
         size={horizontal ? "s" : "xs"}
         textAlign="center"
+        css={css`
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 90%;
+        `}
+        title={typeof children === 'string' ? children : undefined}
       >
         {children}
       </EuiText>
