@@ -1,8 +1,8 @@
 import { MenuItem } from "./types/navigation";
 
 export const LOGO = {
-  label: "Security",
-  logoType: "logoSecurity",
+  label: "Elasticsearch",
+  logoType: "logoElasticsearch",
 };
 
 export const PRIMARY_MENU_ITEMS: MenuItem[] = [
@@ -19,305 +19,52 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
     href: "/dashboards",
   },
   {
-    id: "rules",
-    label: "Rules",
-    iconType: "info",
-    href: "/rules",
-    sections: [
-      {
-        id: "management",
-        label: "Management",
-        items: [
-          {
-            id: "detection-rules",
-            label: "Detection rules (SIEM)",
-            href: "/rules/management/detection-rules",
-          },
-          {
-            id: "benchmarks",
-            label: "Benchmarks",
-            href: "/rules/management/benchmarks",
-          },
-          {
-            id: "shared-exceptions",
-            label: "Shared exceptions lists",
-            href: "/rules/management/shared-exceptions",
-          },
-          {
-            id: "siem-rule-migrations",
-            label: "SIEM rule migrations",
-            href: "/rules/management/siem-rule-migrations",
-          },
-        ],
-      },
-      {
-        id: "discover",
-        label: "Discover",
-        items: [
-          {
-            id: "mitre",
-            label: "MITRE ATT&CK®",
-            href: "/rules/discover/mitre",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "coverage",
-    label: "Coverage",
-    iconType: "visGauge",
-    href: "/coverage",
-  },
-  {
-    id: "alerts",
-    label: "Alerts",
-    iconType: "bell",
-    href: "/alerts",
-  },
-  {
-    id: "attack_discovery",
-    label: "Attack discovery",
-    iconType: "lensApp",
-    href: "/attack-discovery",
-  },
-  {
-    id: "findings",
-    label: "Findings",
-    iconType: "reportingApp",
-    href: "/findings",
-  },
-  {
-    id: "cases",
-    label: "Cases",
-    iconType: "casesApp",
-    href: "/cases",
-  },
-  {
-    id: "investigations",
-    label: "Investigations",
-    iconType: "casesApp",
-    href: "/investigations",
-    sections: [
-      {
-        id: "investigations-section",
-        label: null,
-        items: [
-          {
-            id: "investigations-timelines",
-            label: "Timelines",
-            href: "/investigations/timelines",
-          },
-          {
-            id: "investigations-notes",
-            label: "Notes",
-            href: "/investigations/notes",
-          },
-          {
-            id: "investigations-osquery",
-            label: "Osquery",
-            href: "/investigations/osquery",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "intelligence",
-    label: "Intelligence",
-    iconType: "securityAnalyticsApp",
-    href: "/intelligence",
-  },
-  {
-    id: "explore",
-    label: "Explore",
-    iconType: "search",
-    href: "/explore",
-    sections: [
-      {
-        id: "explore-section",
-        label: null,
-        items: [
-          {
-            id: "hosts",
-            label: "Hosts",
-            href: "/explore/hosts",
-          },
-          {
-            id: "network",
-            label: "Network",
-            href: "/explore/network",
-          },
-          {
-            id: "users",
-            label: "Users",
-            href: "/explore/users",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "assets",
-    label: "Assets",
+    id: "index_management",
+    label: "Index Management",
     iconType: "indexManagementApp",
-    href: "/assets",
-    sections: [
-      {
-        id: "fleet",
-        label: "Fleet",
-        items: [
-          {
-            id: "agents",
-            label: "Agents",
-            href: "/assets/fleet/agents",
-          },
-          {
-            id: "policies",
-            label: "Policies",
-            href: "/assets/fleet/policies",
-          },
-          {
-            id: "enrollment-tokens",
-            label: "Enrollment tokens",
-            href: "/assets/fleet/enrollment-tokens",
-          },
-          {
-            id: "uninstall-tokens",
-            label: "Uninstall tokens",
-            href: "/assets/fleet/uninstall-tokens",
-          },
-          {
-            id: "data-streams",
-            label: "Data streams",
-            href: "/assets/fleet/data-streams",
-          },
-          {
-            id: "settings",
-            label: "Settings",
-            href: "/assets/fleet/settings",
-          },
-        ],
-      },
-      {
-        id: "endpoints",
-        label: "Endpoints",
-        items: [
-          {
-            id: "endpoints-list",
-            label: "Endpoints",
-            href: "/assets/endpoints/list",
-          },
-          {
-            id: "endpoint-policies",
-            label: "Policies",
-            href: "/assets/endpoints/policies",
-          },
-          {
-            id: "trusted-applications",
-            label: "Trusted applications",
-            href: "/assets/endpoints/trusted-applications",
-          },
-          {
-            id: "event-filters",
-            label: "Event filters",
-            href: "/assets/endpoints/event-filters",
-          },
-          {
-            id: "host-isolation-exceptions",
-            label: "Host isolation exceptions",
-            href: "/assets/endpoints/host-isolation-exceptions",
-          },
-          {
-            id: "blocklist",
-            label: "Blocklist",
-            href: "/assets/endpoints/blocklist",
-          },
-          {
-            id: "response-actions-history",
-            label: "Response actions history",
-            href: "/assets/endpoints/response-actions-history",
-          },
-        ],
-      },
-    ],
+    href: "/index-management",
   },
   {
-    id: "machine_learning",
-    label: "Machine Learning",
+    id: "connectors",
+    label: "Connectors",
+    iconType: "info",
+    href: "/connectors",
+  },
+  {
+    id: "web_crawlers",
+    label: "Web Crawlers",
+    iconType: "managementApp",
+    href: "/web-crawlers",
+  },
+  {
+    id: "dev_tools",
+    label: "Dev Tools",
+    iconType: "devToolsApp",
+    href: "/dev-tools",
+  },
+  {
+    id: "playground",
+    label: "Playground",
     iconType: "machineLearningApp",
-    href: "/ml/overview",
-    sections: [
-      {
-        id: "ml-section-1",
-        label: null,
-        items: [
-          {
-            id: "overview",
-            label: "Overview",
-            href: "/ml/overview",
-          },
-          {
-            id: "data-visualizer",
-            label: "Data visualizer",
-            href: "/ml/data-visualizer",
-          },
-        ],
-      },
-      {
-        id: "anomaly-detection",
-        label: "Anomaly detection",
-        items: [
-          {
-            id: "anomaly-explorer",
-            label: "Anomaly explorer",
-            href: "/ml/anomaly-detection/anomaly-explorer",
-          },
-          {
-            id: "single-metric-viewer",
-            label: "Single metric viewer",
-            href: "/ml/anomaly-detection/single-metric-viewer",
-          },
-        ],
-      },
-      {
-        id: "data-frame-analytics",
-        label: "Data frame analytics",
-        items: [
-          {
-            id: "result-explorer",
-            label: "Result explorer",
-            href: "/ml/data-frame-analytics/result-explorer",
-          },
-          {
-            id: "analytics-map",
-            label: "Analytics map",
-            href: "/ml/data-frame-analytics/analytics-map",
-          },
-        ],
-      },
-      {
-        id: "aiops-labs",
-        label: "AIOps labs",
-        items: [
-          {
-            id: "log-rate-analysis",
-            label: "Log rate analysis",
-            href: "/ml/aiops-labs/log-rate-analysis",
-          },
-          {
-            id: "log-pattern-analysis",
-            label: "Log pattern analysis",
-            href: "/ml/aiops-labs/log-pattern-analysis",
-          },
-          {
-            id: "change-point-detection",
-            label: "Change point detection",
-            href: "/ml/aiops-labs/change-point-detection",
-          },
-        ],
-      },
-    ],
+    href: "/playground",
+  },
+  {
+    id: "inference_endpoints",
+    label: "Inference Endpoints",
+    iconType: "machineLearningApp",
+    href: "/inference-endpoints",
+  },
+  {
+    id: "synonyms",
+    label: "Synonyms",
+    iconType: "indexPatternApp",
+    href: "/synonyms",
+  },
+  {
+    id: "maps",
+    label: "Maps",
+    iconType: "gisApp",
+    href: "/maps",
   },
 ];
 
