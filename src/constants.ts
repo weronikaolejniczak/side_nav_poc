@@ -33,27 +33,27 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
     href: "/slos",
   },
   {
-    id: "applications",
-    label: "Applications",
+    id: "apps",
+    label: "Apps",
     iconType: "info",
-    href: "/applications/service-inventory",
+    href: "/apps/service-inventory",
     sections: [
       {
-        id: "applications-section-1",
+        id: "apps-section-1",
         label: null,
         items: [
           {
             id: "service-inventory",
             label: "Service inventory",
-            href: "/applications/service-inventory",
+            href: "/apps/service-inventory",
           },
-          { id: "traces", label: "Traces", href: "/applications/traces" },
+          { id: "traces", label: "Traces", href: "/apps/traces" },
           {
             id: "dependencies",
             label: "Dependencies",
-            href: "/applications/dependencies",
+            href: "/apps/dependencies",
           },
-          { id: "settings", label: "Settings", href: "/applications/settings" },
+          { id: "settings", label: "Settings", href: "/apps/settings" },
         ],
       },
       {
