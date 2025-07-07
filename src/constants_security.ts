@@ -244,7 +244,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "machine_learning",
-    label: "Machine Learning",
+    label: "Machine learning",
     iconType: "machineLearningApp",
     href: "/ml/overview",
     sections: [
@@ -324,13 +324,13 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
 export const PRIMARY_MENU_FOOTER_ITEMS: MenuItem[] = [
   {
     id: "getting_started",
-    label: "Getting Started",
+    label: "Getting started",
     iconType: "launch",
     href: "/getting-started",
   },
   {
     id: "developer_tools",
-    label: "Developer Tools",
+    label: "Developer tools",
     iconType: "code",
     href: "/developer-tools",
   },
@@ -478,7 +478,7 @@ export const PRIMARY_MENU_FOOTER_ITEMS: MenuItem[] = [
       },
       {
         id: "machine_learning",
-        label: "Machine Learning",
+        label: "Machine learning",
         items: [
           {
             id: "ml-overview",
@@ -487,7 +487,7 @@ export const PRIMARY_MENU_FOOTER_ITEMS: MenuItem[] = [
           },
           {
             id: "ml-anomaly-detection",
-            label: "Anomaly detection Jobs",
+            label: "Anomaly detection jobs",
             href: "/settings/ml/anomaly-detection",
           },
           {

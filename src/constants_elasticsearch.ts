@@ -20,7 +20,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "index_management",
-    label: "Index Management",
+    label: "Index management",
     iconType: "indexManagementApp",
     href: "/index-management",
   },
@@ -32,13 +32,13 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "web_crawlers",
-    label: "Web Crawlers",
+    label: "Web crawlers",
     iconType: "managementApp",
     href: "/web-crawlers",
   },
   {
     id: "dev_tools",
-    label: "Dev Tools",
+    label: "Dev tools",
     iconType: "devToolsApp",
     href: "/dev-tools",
   },
@@ -50,7 +50,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "inference_endpoints",
-    label: "Inference Endpoints",
+    label: "Inference endpoints",
     iconType: "machineLearningApp",
     href: "/inference-endpoints",
   },
@@ -71,13 +71,13 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
 export const PRIMARY_MENU_FOOTER_ITEMS: MenuItem[] = [
   {
     id: "getting_started",
-    label: "Getting Started",
+    label: "Getting started",
     iconType: "launch",
     href: "/getting-started",
   },
   {
     id: "developer_tools",
-    label: "Developer Tools",
+    label: "Developer tools",
     iconType: "code",
     href: "/developer-tools",
   },
@@ -225,7 +225,7 @@ export const PRIMARY_MENU_FOOTER_ITEMS: MenuItem[] = [
       },
       {
         id: "machine_learning",
-        label: "Machine Learning",
+        label: "Machine learning",
         items: [
           {
             id: "ml-overview",
@@ -234,7 +234,7 @@ export const PRIMARY_MENU_FOOTER_ITEMS: MenuItem[] = [
           },
           {
             id: "ml-anomaly-detection",
-            label: "Anomaly detection Jobs",
+            label: "Anomaly detection jobs",
             href: "/settings/ml/anomaly-detection",
           },
           {

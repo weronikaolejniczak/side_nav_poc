@@ -44,7 +44,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
         items: [
           {
             id: "service-inventory",
-            label: "Service Inventory",
+            label: "Service inventory",
             href: "/applications/service-inventory",
           },
           { id: "traces", label: "Traces", href: "/applications/traces" },
@@ -82,7 +82,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
         items: [
           {
             id: "inventory",
-            label: "Infrastructure Inventory",
+            label: "Infrastructure inventory",
             href: "/infrastructure/inventory",
           },
           { id: "hosts", label: "Hosts", href: "/infrastructure/hosts" },
@@ -97,7 +97,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "ai-assistant",
-    label: "AI Assistant",
+    label: "AI assistant",
     iconType: "info",
     href: "/ai-assistant",
   },
@@ -109,7 +109,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   },
   {
     id: "machine-learning",
-    label: "Machine Learning",
+    label: "Machine learning",
     iconType: "info",
     href: "/ml/overview",
     sections: [
@@ -120,7 +120,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
           { id: "overview", label: "Overview", href: "/ml/overview" },
           {
             id: "data-visualizer",
-            label: "Data Visualizer",
+            label: "Data visualizer",
             href: "/ml/data-visualizer",
           },
         ],
@@ -185,13 +185,13 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
 export const PRIMARY_MENU_FOOTER_ITEMS: MenuItem[] = [
   {
     id: "getting_started",
-    label: "Getting Started",
+    label: "Getting started",
     iconType: "launch",
     href: "/getting-started",
   },
   {
     id: "developer_tools",
-    label: "Developer Tools",
+    label: "Developer tools",
     iconType: "code",
     href: "/developer-tools",
   },
@@ -339,7 +339,7 @@ export const PRIMARY_MENU_FOOTER_ITEMS: MenuItem[] = [
       },
       {
         id: "machine_learning",
-        label: "Machine Learning",
+        label: "Machine learning",
         items: [
           {
             id: "ml-overview",
@@ -348,7 +348,7 @@ export const PRIMARY_MENU_FOOTER_ITEMS: MenuItem[] = [
           },
           {
             id: "ml-anomaly-detection",
-            label: "Anomaly detection Jobs",
+            label: "Anomaly detection jobs",
             href: "/settings/ml/anomaly-detection",
           },
           {
