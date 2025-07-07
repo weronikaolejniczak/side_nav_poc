@@ -45,6 +45,9 @@ export const SideNavPrimaryMenuItem = forwardRef<
 
     const handleClick = useMenuItemClick(onClick);
 
+    const isSingleWord =
+      typeof children === "string" && !children.includes(" ");
+
     const label = (
       <EuiText
         className="label"
@@ -52,11 +55,24 @@ export const SideNavPrimaryMenuItem = forwardRef<
         textAlign="center"
         css={css`
           overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          max-width: 90%;
+          max-width: 100%;
+          padding: 0 4px;
+
+          ${isSingleWord
+            ? css`
+                /* Single word: stay on one line, truncate with ellipsis */
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              `
+            : css`
+                /* Multiple words: allow wrapping to 2 lines */
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                line-clamp: 2;
+                -webkit-line-clamp: 2;
+              `}
         `}
-        title={typeof children === 'string' ? children : undefined}
+        title={typeof children === "string" ? children : undefined}
       >
         {children}
       </EuiText>

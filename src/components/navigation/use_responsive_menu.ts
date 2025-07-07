@@ -3,7 +3,10 @@ import { useCallback, useRef, useState, RefObject, useEffect } from "react";
 import { MenuItem } from "../../types/navigation";
 import { PRIMARY_MENU_ITEMS } from "../../constants";
 
-const EXPANDED_MENU_ITEM_HEIGHT = 51;
+/** 
+ * The larger height of the primary menu item when the label is 2 lines
+ */
+const EXPANDED_MENU_ITEM_HEIGHT = 67;
 const COLLAPSED_MENU_ITEM_HEIGHT = 32;
 const MAX_MENU_ITEMS = 9;
 
