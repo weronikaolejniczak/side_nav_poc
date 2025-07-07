@@ -5,6 +5,7 @@ import { icon as EuiArrowRight } from "@elastic/eui/es/components/icon/assets/ar
 import { icon as EuiBell } from "@elastic/eui/es/components/icon/assets/bell";
 import { icon as EuiCases } from "@elastic/eui/es/components/icon/assets/app_cases";
 import { icon as EuiCode } from "@elastic/eui/es/components/icon/assets/code";
+import { icon as EuiConsole } from "@elastic/eui/es/components/icon/assets/console";
 import { icon as EuiDashboards } from "@elastic/eui/es/components/icon/assets/app_dashboard";
 import { icon as EuiDevTools } from "@elastic/eui/es/components/icon/assets/app_devtools";
 import { icon as EuiDiscover } from "@elastic/eui/es/components/icon/assets/app_discover";
@@ -42,6 +43,7 @@ appendIconComponentCache({
   boxesHorizontal: EuiEllipsis, // in Figma the icon is `ellipsis` and with circles, not boxes
   casesApp: EuiCases,
   code: EuiCode,
+  console: EuiConsole,
   dashboardApp: EuiDashboards,
   devToolsApp: EuiDevTools,
   discoverApp: EuiDiscover,

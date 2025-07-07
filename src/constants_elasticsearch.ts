@@ -45,7 +45,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   {
     id: "playground",
     label: "Playground",
-    iconType: "machineLearningApp",
+    iconType: "console",
     href: "/playground",
   },
   {
