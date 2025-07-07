@@ -7,12 +7,6 @@ export const LOGO = {
 
 export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   {
-    id: "overview",
-    label: "Overview",
-    iconType: "info",
-    href: "/overview",
-  },
-  {
     id: "discover",
     label: "Discover",
     iconType: "discoverApp",
@@ -23,6 +17,12 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
     label: "Dashboards",
     iconType: "dashboardApp",
     href: "/dashboards",
+  },
+  {
+    id: "overview",
+    label: "Overview",
+    iconType: "info",
+    href: "/overview",
   },
   { id: "alerts", label: "Alerts", iconType: "info", href: "/alerts" },
   { id: "cases", label: "Cases", iconType: "casesApp", href: "/cases" },
