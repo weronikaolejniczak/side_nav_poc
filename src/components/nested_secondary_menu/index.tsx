@@ -3,9 +3,9 @@ import { useState, useCallback, ReactNode, FC } from "react";
 
 import { SecondaryMenu } from "../secondary_menu";
 import { NestedMenuContext } from "./use_nested_menu";
-import { Panel } from "./nested_secondary_menu_panel";
-import { BackButton } from "./nested_secondary_menu_back_button";
-import { Item } from "./nested_secondary_menu_item";
+import { Panel } from "./menu_panel";
+import { BackButton } from "./back_button";
+import { Item } from "./menu_item";
 
 type NestedSecondaryMenuProps = {
   children: ReactNode;
