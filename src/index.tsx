@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 
 import { appendIconComponentCache } from "@elastic/eui/es/components/icon/icon";
+import { icon as EuiArrowLeft } from "@elastic/eui/es/components/icon/assets/arrow_left";
 import { icon as EuiArrowRight } from "@elastic/eui/es/components/icon/assets/arrow_right";
 import { icon as EuiBell } from "@elastic/eui/es/components/icon/assets/bell";
 import { icon as EuiCases } from "@elastic/eui/es/components/icon/assets/app_cases";
@@ -38,6 +39,7 @@ if (!rootElement) throw new Error("Failed to find the root element");
 const root = createRoot(rootElement);
 
 appendIconComponentCache({
+  arrowLeft: EuiArrowLeft,
   arrowRight: EuiArrowRight, // semantically it's chevron right
   bell: EuiBell,
   boxesHorizontal: EuiEllipsis, // in Figma the icon is `ellipsis` and with circles, not boxes

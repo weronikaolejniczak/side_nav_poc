@@ -13,6 +13,7 @@ import { useNavigation } from "../../contexts/navigation_context";
 import { useResponsiveMenu } from "./use_responsive_menu";
 import { MenuItem } from "../../types/navigation";
 import { hasSubmenu } from "./has_submenu";
+import { NestedSecondaryMenu } from "../secondary_menu/nested_secondary_menu";
 
 export const MainNavigation = (): JSX.Element => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -133,27 +134,66 @@ export const MainNavigation = (): JSX.Element => {
         }
       >
         {(closePopover) => (
-          <SecondaryMenu title="More" isPanel={false}>
-            <SecondaryMenu.Section hasGap label={null}>
-              {overflowMenuItems.map((item) => (
-                <SideNav.PrimaryMenuItem
-                  key={item.id}
-                  iconType={item.iconType}
-                  isCurrent={
-                    item.href === currentPage || item.href === currentSubpage
-                  }
-                  horizontal
-                  href={item.href}
-                  onClick={() => {
-                    navigateTo(item);
-                    closePopover();
-                  }}
-                >
-                  {item.label}
-                </SideNav.PrimaryMenuItem>
-              ))}
-            </SecondaryMenu.Section>
-          </SecondaryMenu>
+          <NestedSecondaryMenu>
+            <NestedSecondaryMenu.Panel id="main" title="More">
+              <NestedSecondaryMenu.Section hasGap label={null}>
+                {overflowMenuItems.map((item) => {
+                  const isCurrent = item.href === currentPage || item.href === currentSubpage;
+                  const hasSubItems = hasSubmenu(item);
+                  
+                  return (
+                    <NestedSecondaryMenu.Item
+                      key={item.id}
+                      iconType={item.iconType}
+                      isCurrent={isCurrent}
+                      href={item.href}
+                      hasSubmenu={hasSubItems}
+                      submenuPanelId={hasSubItems ? `submenu-${item.id}` : undefined}
+                      onClick={() => {
+                        const itemWithoutSections = { ...item, sections: undefined };
+                        navigateTo(itemWithoutSections);
+                        if (!hasSubItems) {
+                          closePopover();
+                        }
+                      }}
+                    >
+                      {item.label}
+                    </NestedSecondaryMenu.Item>
+                  );
+                })}
+              </NestedSecondaryMenu.Section>
+            </NestedSecondaryMenu.Panel>
+            {overflowMenuItems.filter(hasSubmenu).map((item) => (
+              <NestedSecondaryMenu.Panel key={`submenu-${item.id}`} id={`submenu-${item.id}`}>
+                <NestedSecondaryMenu.BackButton title={item.label} />
+                {item.sections?.map((section) => (
+                  <NestedSecondaryMenu.Section
+                    key={section.id}
+                    label={section.label}
+                    hasGap={!!section.label}
+                  >
+                    {section.items.map((subItem) => (
+                      <NestedSecondaryMenu.Item
+                        key={subItem.id}
+                        iconType={subItem.iconType}
+                        isCurrent={
+                          (subItem.href && currentSubpage === subItem.href) ||
+                          (!currentSubpage && subItem.href === currentPage)
+                        }
+                        href={subItem.href}
+                        onClick={() => {
+                          navigateTo(item, subItem);
+                          closePopover();
+                        }}
+                      >
+                        {subItem.label}
+                      </NestedSecondaryMenu.Item>
+                    ))}
+                  </NestedSecondaryMenu.Section>
+                ))}
+              </NestedSecondaryMenu.Panel>
+            ))}
+          </NestedSecondaryMenu>
         )}
       </SideNav.Popover>
     );
