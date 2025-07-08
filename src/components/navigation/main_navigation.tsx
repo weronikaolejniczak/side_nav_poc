@@ -154,12 +154,8 @@ export const MainNavigation = (): JSX.Element => {
                           hasSubItems ? `submenu-${item.id}` : undefined
                         }
                         onClick={() => {
-                          const itemWithoutSections = {
-                            ...item,
-                            sections: undefined,
-                          };
-                          navigateTo(itemWithoutSections);
                           if (!hasSubItems) {
+                            navigateTo(item);
                             closePopover();
                           }
                         }}
