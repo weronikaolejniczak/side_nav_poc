@@ -46,7 +46,7 @@ export const Layout = ({
         grid-template-areas:
           "topbar topbar topbar"
           "sidenav ${isSidePanelOpen ? "secondary" : "."} content";
-        transition: grid-template-columns 0.3s;
+        transition: grid-template-columns 0.1s;
       `}
     >
       {children}
