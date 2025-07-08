@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { EuiButtonIcon, EuiTitle, useEuiTheme } from "@elastic/eui";
+import { EuiIcon, EuiTitle, useEuiTheme } from "@elastic/eui";
 import { FC } from "react";
 import { css } from "@emotion/react";
 
@@ -23,23 +23,30 @@ export const BackButton: FC<BackButtonProps> = ({ title }) => {
     padding-bottom: ${euiTheme.size.xs};
     display: flex;
     align-items: center;
-    gap: ${euiTheme.size.xs};
+    gap: ${euiTheme.size.s};
   `;
 
   const backButtonStyle = css`
+    background: none;
+    border: none;
     color: currentColor;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    font-size: ${euiTheme.size.m};
   `;
 
   return (
     <div css={titleStyle}>
-      <EuiButtonIcon
+      <button
         css={backButtonStyle}
         aria-label="Go back"
-        iconType="arrowLeft"
         onClick={goBack}
-        display="empty"
-        size="xs"
-      />
+        type="button"
+      >
+        <EuiIcon type="arrowLeft" />
+      </button>
       {title && (
         <EuiTitle size="xs">
           <h4>{title}</h4>
