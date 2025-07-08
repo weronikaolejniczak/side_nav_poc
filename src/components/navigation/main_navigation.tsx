@@ -133,77 +133,103 @@ export const MainNavigation = (): JSX.Element => {
           </SideNav.PrimaryMenuItem>
         }
       >
-        {(closePopover) => (
-          <NestedSecondaryMenu>
-            <NestedSecondaryMenu.Panel id="main" title="More">
-              <NestedSecondaryMenu.Section hasGap label={null}>
+        {(closePopover) =>
+          isCollapsed ? (
+            <NestedSecondaryMenu>
+              <NestedSecondaryMenu.Panel id="main" title="More">
+                <NestedSecondaryMenu.Section hasGap label={null}>
+                  {overflowMenuItems.map((item) => {
+                    const isCurrent =
+                      item.href === currentPage || item.href === currentSubpage;
+                    const hasSubItems = hasSubmenu(item);
+
+                    return (
+                      <NestedSecondaryMenu.Item
+                        key={item.id}
+                        iconType={item.iconType}
+                        isCurrent={isCurrent}
+                        href={item.href}
+                        hasSubmenu={hasSubItems}
+                        submenuPanelId={
+                          hasSubItems ? `submenu-${item.id}` : undefined
+                        }
+                        onClick={() => {
+                          const itemWithoutSections = {
+                            ...item,
+                            sections: undefined,
+                          };
+                          navigateTo(itemWithoutSections);
+                          if (!hasSubItems) {
+                            closePopover();
+                          }
+                        }}
+                      >
+                        {item.label}
+                      </NestedSecondaryMenu.Item>
+                    );
+                  })}
+                </NestedSecondaryMenu.Section>
+              </NestedSecondaryMenu.Panel>
+              {overflowMenuItems.filter(hasSubmenu).map((item) => (
+                <NestedSecondaryMenu.Panel
+                  key={`submenu-${item.id}`}
+                  id={`submenu-${item.id}`}
+                >
+                  <NestedSecondaryMenu.BackButton title={item.label} />
+                  {item.sections?.map((section) => (
+                    <NestedSecondaryMenu.Section
+                      key={section.id}
+                      label={section.label}
+                      hasGap={!!section.label}
+                    >
+                      {section.items.map((subItem) => (
+                        <NestedSecondaryMenu.Item
+                          key={subItem.id}
+                          iconType={subItem.iconType}
+                          isCurrent={
+                            (subItem.href && currentSubpage === subItem.href) ||
+                            (!currentSubpage && subItem.href === currentPage)
+                          }
+                          href={subItem.href}
+                          onClick={() => {
+                            navigateTo(item, subItem);
+                            closePopover();
+                          }}
+                        >
+                          {subItem.label}
+                        </NestedSecondaryMenu.Item>
+                      ))}
+                    </NestedSecondaryMenu.Section>
+                  ))}
+                </NestedSecondaryMenu.Panel>
+              ))}
+            </NestedSecondaryMenu>
+          ) : (
+            <SecondaryMenu title="More" isPanel={false}>
+              <SecondaryMenu.Section hasGap label={null}>
                 {overflowMenuItems.map((item) => {
                   const isCurrent =
                     item.href === currentPage || item.href === currentSubpage;
-                  const hasSubItems = hasSubmenu(item);
 
                   return (
-                    <NestedSecondaryMenu.Item
+                    <SecondaryMenu.Item
                       key={item.id}
                       iconType={item.iconType}
                       isCurrent={isCurrent}
                       href={item.href}
-                      hasSubmenu={hasSubItems}
-                      submenuPanelId={
-                        hasSubItems ? `submenu-${item.id}` : undefined
-                      }
                       onClick={() => {
-                        const itemWithoutSections = {
-                          ...item,
-                          sections: undefined,
-                        };
-                        navigateTo(itemWithoutSections);
-                        if (!hasSubItems) {
-                          closePopover();
-                        }
+                        navigateTo(item);
+                        closePopover();
                       }}
                     >
                       {item.label}
-                    </NestedSecondaryMenu.Item>
+                    </SecondaryMenu.Item>
                   );
                 })}
-              </NestedSecondaryMenu.Section>
-            </NestedSecondaryMenu.Panel>
-            {overflowMenuItems.filter(hasSubmenu).map((item) => (
-              <NestedSecondaryMenu.Panel
-                key={`submenu-${item.id}`}
-                id={`submenu-${item.id}`}
-              >
-                <NestedSecondaryMenu.BackButton title={item.label} />
-                {item.sections?.map((section) => (
-                  <NestedSecondaryMenu.Section
-                    key={section.id}
-                    label={section.label}
-                    hasGap={!!section.label}
-                  >
-                    {section.items.map((subItem) => (
-                      <NestedSecondaryMenu.Item
-                        key={subItem.id}
-                        iconType={subItem.iconType}
-                        isCurrent={
-                          (subItem.href && currentSubpage === subItem.href) ||
-                          (!currentSubpage && subItem.href === currentPage)
-                        }
-                        href={subItem.href}
-                        onClick={() => {
-                          navigateTo(item, subItem);
-                          closePopover();
-                        }}
-                      >
-                        {subItem.label}
-                      </NestedSecondaryMenu.Item>
-                    ))}
-                  </NestedSecondaryMenu.Section>
-                ))}
-              </NestedSecondaryMenu.Panel>
-            ))}
-          </NestedSecondaryMenu>
-        )}
+              </SecondaryMenu.Section>
+            </SecondaryMenu>
+          )
+        }
       </SideNav.Popover>
     );
   }, [
