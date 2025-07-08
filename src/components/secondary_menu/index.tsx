@@ -3,8 +3,8 @@ import { EuiTitle, useEuiTheme } from "@elastic/eui";
 import { FC, ReactNode } from "react";
 import { css } from "@emotion/react";
 
-import { SecondaryMenuItem } from "./secondary_menu_item";
-import { SecondaryMenuSection } from "./secondary_menu_section";
+import { SecondaryMenuItem } from "./item";
+import { SecondaryMenuSection } from "./section";
 
 export type SecondaryMenuProps = {
   title: string;
