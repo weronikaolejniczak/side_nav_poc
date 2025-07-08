@@ -159,6 +159,7 @@ export const SideNavPrimaryMenuItem = forwardRef<
         role="menuitem"
         href={href}
         onClick={handleClick}
+        data-menu-item
         {...props}
       >
         <div className="iconWrapper">
