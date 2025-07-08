@@ -1,4 +1,4 @@
-import { MenuItem } from "../../types/navigation";
+import { MenuItem } from "../types/navigation";
 
 /**
  * Checks if a menu item has submenu content

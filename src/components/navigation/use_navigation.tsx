@@ -6,13 +6,13 @@ import {
   useCallback,
 } from "react";
 
-import { MenuItem, SecondaryMenuItem } from "../types/navigation";
-import { PRIMARY_MENU_ITEMS } from "../constants";
+import { MenuItem, SecondaryMenuItem } from "../../types/navigation";
+import { PRIMARY_MENU_ITEMS } from "../../constants";
 import {
   NavigationState,
   navigationReducer,
   NavigationService,
-} from "../services/navigation_service";
+} from "../../services/navigation_service";
 
 interface NavigationContextValue extends NavigationState {
   isSidePanelOpen: boolean;

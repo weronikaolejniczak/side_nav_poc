@@ -9,11 +9,11 @@ import { SecondaryMenu } from "../secondary_menu";
 import { SideNav } from "../side_nav";
 import { TopBar } from "../top_bar";
 import { LOGO, PRIMARY_MENU_FOOTER_ITEMS } from "../../constants";
-import { useNavigation } from "../../contexts/navigation_context";
+import { useNavigation } from "./use_navigation";
 import { useResponsiveMenu } from "./use_responsive_menu";
 import { MenuItem } from "../../types/navigation";
-import { hasSubmenu } from "./has_submenu";
-import { NestedSecondaryMenu } from "../secondary_menu/nested_secondary_menu";
+import { hasSubmenu } from "../../utils/has_submenu";
+import { NestedSecondaryMenu } from "../nested_secondary_menu";
 
 export const MainNavigation = (): JSX.Element => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -138,9 +138,10 @@ export const MainNavigation = (): JSX.Element => {
             <NestedSecondaryMenu.Panel id="main" title="More">
               <NestedSecondaryMenu.Section hasGap label={null}>
                 {overflowMenuItems.map((item) => {
-                  const isCurrent = item.href === currentPage || item.href === currentSubpage;
+                  const isCurrent =
+                    item.href === currentPage || item.href === currentSubpage;
                   const hasSubItems = hasSubmenu(item);
-                  
+
                   return (
                     <NestedSecondaryMenu.Item
                       key={item.id}
@@ -148,9 +149,14 @@ export const MainNavigation = (): JSX.Element => {
                       isCurrent={isCurrent}
                       href={item.href}
                       hasSubmenu={hasSubItems}
-                      submenuPanelId={hasSubItems ? `submenu-${item.id}` : undefined}
+                      submenuPanelId={
+                        hasSubItems ? `submenu-${item.id}` : undefined
+                      }
                       onClick={() => {
-                        const itemWithoutSections = { ...item, sections: undefined };
+                        const itemWithoutSections = {
+                          ...item,
+                          sections: undefined,
+                        };
                         navigateTo(itemWithoutSections);
                         if (!hasSubItems) {
                           closePopover();
@@ -164,7 +170,10 @@ export const MainNavigation = (): JSX.Element => {
               </NestedSecondaryMenu.Section>
             </NestedSecondaryMenu.Panel>
             {overflowMenuItems.filter(hasSubmenu).map((item) => (
-              <NestedSecondaryMenu.Panel key={`submenu-${item.id}`} id={`submenu-${item.id}`}>
+              <NestedSecondaryMenu.Panel
+                key={`submenu-${item.id}`}
+                id={`submenu-${item.id}`}
+              >
                 <NestedSecondaryMenu.BackButton title={item.label} />
                 {item.sections?.map((section) => (
                   <NestedSecondaryMenu.Section

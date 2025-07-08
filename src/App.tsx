@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { EuiProvider } from "@elastic/eui";
 
-import { MainNavigation } from "./components/navigation";
-import { NavigationProvider } from "./contexts/navigation_context";
+import { MainNavigation, NavigationProvider } from "./components/navigation";
 
 /**
  * Main application component that serves as the entry point for the side navigation UI.
