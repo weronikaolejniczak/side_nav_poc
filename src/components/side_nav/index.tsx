@@ -3,13 +3,13 @@ import { useEuiTheme } from "@elastic/eui";
 import { css } from "@emotion/react";
 import { FC, ReactNode } from "react";
 
-import { SideNavFooter } from "./side_nav_footer";
-import { SideNavFooterItem } from "./side_nav_footer_item";
-import { SideNavLogo } from "./side_nav_logo";
-import { SideNavPanel } from "./side_nav_panel";
-import { SideNavPopover } from "./side_nav_popover";
-import { SideNavPrimaryMenu } from "./side_nav_primary_menu";
-import { SideNavPrimaryMenuItem } from "./side_nav_primary_menu_item";
+import { SideNavFooter } from "./footer";
+import { SideNavFooterItem } from "./footer_item";
+import { SideNavLogo } from "./logo";
+import { SideNavPanel } from "./panel";
+import { SideNavPopover } from "./popover";
+import { SideNavPrimaryMenu } from "./primary_menu";
+import { SideNavPrimaryMenuItem } from "./primary_menu_item";
 
 export type SideNavProps = {
   isCollapsed: boolean;
