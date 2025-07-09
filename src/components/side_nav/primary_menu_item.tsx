@@ -154,9 +154,8 @@ export const SideNavPrimaryMenuItem = forwardRef<
     const menuItem = (
       <a
         ref={ref}
-        aria-pressed={isCurrent}
+        aria-current={isCurrent ? "page" : undefined}
         css={buttonStyles}
-        role="menuitem"
         href={href}
         onClick={handleClick}
         data-menu-item
