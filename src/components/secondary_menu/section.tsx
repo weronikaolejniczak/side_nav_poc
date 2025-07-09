@@ -42,7 +42,6 @@ export const SecondaryMenuSection = ({
           border-bottom: 1px ${euiTheme.colors.borderBaseSubdued} solid;
         }
       `}
-      role="menu"
       aria-labelledby={sectionId || undefined}
     >
       {label && (

@@ -57,7 +57,6 @@ export const SecondaryMenuItem = ({
           fullWidth
           href={href}
           onClick={handleClick}
-          role="menuitem"
           size="s"
           tabIndex={0}
           textProps={false}
@@ -71,7 +70,6 @@ export const SecondaryMenuItem = ({
           color="text"
           href={href}
           onClick={handleClick}
-          role="menuitem"
           size="s"
           tabIndex={0}
           textProps={false}
