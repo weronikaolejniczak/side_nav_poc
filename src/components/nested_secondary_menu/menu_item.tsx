@@ -61,7 +61,7 @@ export const Item: FC<ItemProps> = ({
         {hasSubmenu && (
           <EuiButtonIcon
             css={arrowStyle}
-            aria-label="Has submenu"
+            aria-label={`${children} has submenu`}
             iconType="arrowRight"
             size="xs"
             color="text"
