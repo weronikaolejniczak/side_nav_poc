@@ -241,7 +241,9 @@ export const MainNavigation = (): JSX.Element => {
     <Layout isSidePanelOpen={isSidePanelOpen} isCollapsed={isCollapsed}>
       <TopBar>
         <EuiButtonIcon
-          aria-label={isCollapsed ? "Expand menu" : "Collapse menu"}
+          aria-label={isCollapsed ? "Expand navigation menu" : "Collapse navigation menu"}
+          aria-controls="primary-navigation"
+          aria-expanded={!isCollapsed}
           color="text"
           iconType={isCollapsed ? "transitionLeftIn" : "transitionLeftOut"}
           onClick={toggleCollapsed}

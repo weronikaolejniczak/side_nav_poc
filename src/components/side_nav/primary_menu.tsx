@@ -16,6 +16,8 @@ export const SideNavPrimaryMenu = forwardRef<
 
   return (
     <nav
+      id="primary-navigation"
+      aria-label="Main navigation"
       ref={ref}
       css={css`
         align-items: center;
