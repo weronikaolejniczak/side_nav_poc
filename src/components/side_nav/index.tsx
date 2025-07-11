@@ -10,9 +10,9 @@ import { SideNavPanel } from "./panel";
 import { SideNavPopover } from "./popover";
 import { SideNavPrimaryMenu } from "./primary_menu";
 import { SideNavPrimaryMenuItem } from "./primary_menu_item";
+import { useNavigation } from "../navigation";
 
 export type SideNavProps = {
-  isCollapsed: boolean;
   children: ReactNode;
 };
 
@@ -26,8 +26,9 @@ interface SideNavComponent extends FC<SideNavProps> {
   Panel: typeof SideNavPanel;
 }
 
-export const SideNav: SideNavComponent = ({ isCollapsed, children }) => {
+export const SideNav: SideNavComponent = ({ children }) => {
   const { euiTheme } = useEuiTheme();
+  const { isCollapsed } = useNavigation();
 
   return (
     <aside

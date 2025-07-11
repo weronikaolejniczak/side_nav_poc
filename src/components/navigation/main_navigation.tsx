@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { EuiButtonIcon, EuiText } from "@elastic/eui";
-import { useCallback, useRef } from "react";
+import { useRef, KeyboardEvent } from "react";
 
 import { Content } from "../content";
 import { Layout } from "../layout";
 import { Main } from "../main";
-import { SecondaryMenu } from "../secondary_menu";
 import { SideNav } from "../side_nav";
 import { TopBar } from "../top_bar";
 import { LOGO, PRIMARY_MENU_FOOTER_ITEMS } from "../../constants";
@@ -13,234 +12,32 @@ import { useNavigation } from "./use_navigation";
 import { useResponsiveMenu } from "./use_responsive_menu";
 import { MenuItem } from "../../types/navigation";
 import { hasSubmenu } from "../../utils/has_submenu";
-import { NestedSecondaryMenu } from "../nested_secondary_menu";
+import { SubMenuContent } from "./sub_menu_content";
+import { MoreMenu } from "./more_menu";
 
 export const MainNavigation = (): JSX.Element => {
   const mainRef = useRef<HTMLDivElement>(null);
 
   const {
-    isCollapsed,
-    toggleCollapsed,
     currentPage,
     currentSubpage,
-    sidePanelContent,
+    isCollapsed,
     isSidePanelOpen,
     navigateTo,
+    sidePanelContent,
+    toggleCollapsed,
   } = useNavigation();
 
   const { primaryMenuRef, visibleMenuItems, overflowMenuItems } =
     useResponsiveMenu(isCollapsed);
 
-  const renderSubMenu = useCallback(
-    (
-      item: MenuItem,
-      isPanel: boolean,
-      closePopover?: () => void
-    ): JSX.Element | null => {
-      if (!hasSubmenu(item)) return null;
-
-      return (
-        <SecondaryMenu title={item.label} isPanel={isPanel}>
-          {item.sections!.map((section) => (
-            <SecondaryMenu.Section key={section.id} label={section.label}>
-              {section.items.map((subItem) => (
-                <SecondaryMenu.Item
-                  key={subItem.id}
-                  isCurrent={
-                    (subItem.href && currentSubpage === subItem.href) ||
-                    (!currentSubpage && subItem.href === currentPage)
-                  }
-                  href={subItem.href}
-                  onClick={
-                    subItem.href
-                      ? () => {
-                          if (item.href && subItem.href === item.href) {
-                            navigateTo(item);
-                            closePopover?.();
-                          } else {
-                            navigateTo(item, subItem);
-                            closePopover?.();
-                            mainRef.current?.focus();
-                          }
-                        }
-                      : undefined
-                  }
-                >
-                  {subItem.label}
-                </SecondaryMenu.Item>
-              ))}
-            </SecondaryMenu.Section>
-          ))}
-        </SecondaryMenu>
-      );
-    },
-    [navigateTo, currentPage, currentSubpage]
-  );
-
-  const handleMainItemClick = useCallback(
-    (item: MenuItem) => {
-      navigateTo(item);
-      mainRef.current?.focus();
-    },
-    [navigateTo]
-  );
-
-  const renderPrimaryMenuItem = useCallback(
-    (item: MenuItem) => (
-      <SideNav.Popover
-        key={item.id}
-        container={document.documentElement}
-        hasContent={hasSubmenu(item)}
-        isSidePanelOpen={!isCollapsed && item.id === sidePanelContent?.id}
-        trigger={
-          <SideNav.PrimaryMenuItem
-            href={item.href}
-            iconType={item.iconType}
-            isCollapsed={isCollapsed}
-            isCurrent={item.id === sidePanelContent?.id}
-            hasContent={hasSubmenu(item)}
-            onClick={() => handleMainItemClick(item)}
-          >
-            {item.label}
-          </SideNav.PrimaryMenuItem>
-        }
-      >
-        {(closePopover) => renderSubMenu(item, false, closePopover)}
-      </SideNav.Popover>
-    ),
-    [isCollapsed, sidePanelContent, handleMainItemClick, renderSubMenu]
-  );
-
-  const renderMoreMenu = useCallback(() => {
-    if (overflowMenuItems.length === 0) return null;
-
-    return (
-      <SideNav.Popover
-        container={document.documentElement}
-        hasContent
-        isSidePanelOpen={false}
-        persistent
-        trigger={
-          <SideNav.PrimaryMenuItem
-            isCurrent={overflowMenuItems.some(
-              (item) => item.id === sidePanelContent?.id
-            )}
-            iconType="boxesHorizontal"
-            isCollapsed={isCollapsed}
-            hasContent
-          >
-            More
-          </SideNav.PrimaryMenuItem>
-        }
-      >
-        {(closePopover) =>
-          isCollapsed ? (
-            <NestedSecondaryMenu>
-              <NestedSecondaryMenu.Panel id="main" title="More">
-                <NestedSecondaryMenu.Section hasGap label={null}>
-                  {overflowMenuItems.map((item) => {
-                    const isCurrent =
-                      item.href === currentPage || item.href === currentSubpage;
-                    const hasSubItems = hasSubmenu(item);
-
-                    return (
-                      <NestedSecondaryMenu.PrimaryMenuItem
-                        key={item.id}
-                        iconType={item.iconType}
-                        isCurrent={isCurrent}
-                        href={item.href}
-                        hasSubmenu={hasSubItems}
-                        submenuPanelId={
-                          hasSubItems ? `submenu-${item.id}` : undefined
-                        }
-                        onClick={() => {
-                          if (!hasSubItems) {
-                            navigateTo(item);
-                            closePopover();
-                          }
-                        }}
-                      >
-                        {item.label}
-                      </NestedSecondaryMenu.PrimaryMenuItem>
-                    );
-                  })}
-                </NestedSecondaryMenu.Section>
-              </NestedSecondaryMenu.Panel>
-              {overflowMenuItems.filter(hasSubmenu).map((item) => (
-                <NestedSecondaryMenu.Panel
-                  key={`submenu-${item.id}`}
-                  id={`submenu-${item.id}`}
-                >
-                  <NestedSecondaryMenu.BackButton title={item.label} />
-                  {item.sections?.map((section) => (
-                    <NestedSecondaryMenu.Section
-                      key={section.id}
-                      label={section.label}
-                      hasGap={!!section.label}
-                    >
-                      {section.items.map((subItem) => (
-                        <NestedSecondaryMenu.Item
-                          key={subItem.id}
-                          iconType={subItem.iconType}
-                          isCurrent={
-                            (subItem.href && currentSubpage === subItem.href) ||
-                            (!currentSubpage && subItem.href === currentPage)
-                          }
-                          href={subItem.href}
-                          onClick={() => {
-                            navigateTo(item, subItem);
-                            closePopover();
-                          }}
-                        >
-                          {subItem.label}
-                        </NestedSecondaryMenu.Item>
-                      ))}
-                    </NestedSecondaryMenu.Section>
-                  ))}
-                </NestedSecondaryMenu.Panel>
-              ))}
-            </NestedSecondaryMenu>
-          ) : (
-            <SecondaryMenu title="More" isPanel={false}>
-              <SecondaryMenu.Section hasGap label={null}>
-                {overflowMenuItems.map((item) => {
-                  const isCurrent =
-                    item.href === currentPage || item.href === currentSubpage;
-
-                  return (
-                    <SideNav.PrimaryMenuItem
-                      key={item.id}
-                      iconType={item.iconType}
-                      isCurrent={isCurrent}
-                      href={item.href}
-                      hasContent
-                      onClick={() => {
-                        navigateTo(item);
-                        closePopover();
-                      }}
-                      horizontal
-                    >
-                      {item.label}
-                    </SideNav.PrimaryMenuItem>
-                  );
-                })}
-              </SecondaryMenu.Section>
-            </SecondaryMenu>
-          )
-        }
-      </SideNav.Popover>
-    );
-  }, [
-    overflowMenuItems,
-    sidePanelContent,
-    isCollapsed,
-    currentPage,
-    currentSubpage,
-    navigateTo,
-  ]);
+  const handleMainItemClick = (item: MenuItem) => {
+    navigateTo(item);
+    mainRef.current?.focus();
+  };
 
   return (
-    <Layout isSidePanelOpen={isSidePanelOpen} isCollapsed={isCollapsed}>
+    <Layout isSidePanelOpen={isSidePanelOpen}>
       <TopBar>
         <EuiButtonIcon
           aria-label={
@@ -254,20 +51,38 @@ export const MainNavigation = (): JSX.Element => {
           size="s"
         />
       </TopBar>
-
-      <SideNav isCollapsed={isCollapsed}>
-        <SideNav.Logo
-          isCollapsed={isCollapsed}
-          label={LOGO.label}
-          logoType={LOGO.logoType}
-        />
-
-        <SideNav.PrimaryMenu ref={primaryMenuRef} isCollapsed={isCollapsed}>
-          {visibleMenuItems.map(renderPrimaryMenuItem)}
-          {renderMoreMenu()}
+      <SideNav>
+        <SideNav.Logo label={LOGO.label} logoType={LOGO.logoType} />
+        <SideNav.PrimaryMenu ref={primaryMenuRef}>
+          {visibleMenuItems.map((item) => (
+            <SideNav.Popover
+              key={item.id}
+              container={document.documentElement}
+              hasContent={hasSubmenu(item)}
+              isSidePanelOpen={!isCollapsed && item.id === sidePanelContent?.id}
+              trigger={
+                <SideNav.PrimaryMenuItem
+                  href={item.href}
+                  iconType={item.iconType}
+                  isCurrent={item.id === sidePanelContent?.id}
+                  hasContent={hasSubmenu(item)}
+                  onClick={() => handleMainItemClick(item)}
+                >
+                  {item.label}
+                </SideNav.PrimaryMenuItem>
+              }
+            >
+              {(closePopover) => (
+                <SubMenuContent item={item} closePopover={closePopover} />
+              )}
+            </SideNav.Popover>
+          ))}
+          <MoreMenu
+            overflowMenuItems={overflowMenuItems}
+            sidePanelContent={sidePanelContent}
+          />
         </SideNav.PrimaryMenu>
-
-        <SideNav.Footer isCollapsed={isCollapsed}>
+        <SideNav.Footer>
           {PRIMARY_MENU_FOOTER_ITEMS.map((item) => (
             <SideNav.Popover
               key={item.id}
@@ -280,7 +95,7 @@ export const MainNavigation = (): JSX.Element => {
                   isCurrent={item.id === sidePanelContent?.id}
                   onClick={() => navigateTo(item)}
                   hasContent={hasSubmenu(item)}
-                  onKeyDown={(e: React.KeyboardEvent) => {
+                  onKeyDown={(e: KeyboardEvent) => {
                     if (e.key === "Enter") {
                       e.preventDefault();
                       navigateTo(item);
@@ -291,16 +106,18 @@ export const MainNavigation = (): JSX.Element => {
                 />
               }
             >
-              {(closePopover) => renderSubMenu(item, false, closePopover)}
+              {(closePopover) => (
+                <SubMenuContent item={item} closePopover={closePopover} />
+              )}
             </SideNav.Popover>
           ))}
         </SideNav.Footer>
       </SideNav>
-
       {isSidePanelOpen && sidePanelContent && (
-        <SideNav.Panel>{renderSubMenu(sidePanelContent, true)}</SideNav.Panel>
+        <SideNav.Panel>
+          <SubMenuContent item={sidePanelContent} isPanel />
+        </SideNav.Panel>
       )}
-
       <Main ref={mainRef}>
         <Content>
           <EuiText color="subdued">

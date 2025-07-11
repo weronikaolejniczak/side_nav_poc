@@ -2,17 +2,18 @@
 import { css } from "@emotion/react";
 import { forwardRef, ForwardedRef, ReactNode } from "react";
 import { useEuiTheme } from "@elastic/eui";
+import { useNavigation } from "../navigation";
 
 export type SideNavPrimaryMenuProps = {
-  isCollapsed: boolean;
   children: ReactNode;
 };
 
 export const SideNavPrimaryMenu = forwardRef<
   HTMLElement,
   SideNavPrimaryMenuProps
->(({ isCollapsed, children }, ref: ForwardedRef<HTMLElement>): JSX.Element => {
+>(({ children }, ref: ForwardedRef<HTMLElement>): JSX.Element => {
   const { euiTheme } = useEuiTheme();
+  const { isCollapsed } = useNavigation();
 
   return (
     <nav

@@ -3,16 +3,17 @@ import { ReactNode } from "react";
 import { css } from "@emotion/react";
 import { useEuiTheme } from "@elastic/eui";
 
+import { useNavigation } from "../navigation";
+
 export type SideNavFooterProps = {
-  isCollapsed: boolean;
   children: ReactNode;
 };
 
 export const SideNavFooter = ({
-  isCollapsed,
   children,
 }: SideNavFooterProps): JSX.Element => {
   const { euiTheme } = useEuiTheme();
+  const { isCollapsed } = useNavigation();
 
   return (
     <footer

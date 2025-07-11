@@ -2,8 +2,9 @@
 import { EuiIcon, EuiText, useEuiTheme } from "@elastic/eui";
 import { css } from "@emotion/react";
 
+import { useNavigation } from "../navigation";
+
 export type SideNavLogoProps = {
-  isCollapsed: boolean;
   label: string;
   logoType: string;
 };
@@ -15,9 +16,9 @@ export type SideNavLogoProps = {
 export const SideNavLogo = ({
   logoType,
   label,
-  isCollapsed,
 }: SideNavLogoProps): JSX.Element => {
   const { euiTheme } = useEuiTheme();
+  const { isCollapsed } = useNavigation();
 
   return (
     <div
@@ -60,12 +61,12 @@ export const SideNavLogo = ({
         <EuiText
           css={css`
             font-weight: ${euiTheme.font.weight.semiBold};
-            font-size: ${label.length > 10 
-              ? '0.75rem' /* ~10.5px - fine print for longer labels */
-              : '0.8571rem' /* ~12px - input label size for shorter labels */};
-            line-height: ${label.length > 10 
-              ? '1rem' 
-              : '1.1429rem'};
+            font-size: ${
+              label.length > 10
+                ? "0.75rem" /* ~10.5px - fine print for longer labels */
+                : "0.8571rem" /* ~12px - input label size for shorter labels */
+            };
+            line-height: ${label.length > 10 ? "1rem" : "1.1429rem"};
           `}
           size="xs"
         >
