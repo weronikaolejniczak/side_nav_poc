@@ -59,12 +59,8 @@ export const SideNavLogo = ({
       {!isCollapsed && (
         <EuiText
           css={css`
-            font-weight: ${euiTheme.font.weight.semiBold};
-            font-size: ${
-              label.length > 10
-                ? "0.75rem" /* ~10.5px - fine print for longer labels */
-                : "0.8571rem" /* ~12px - input label size for shorter labels */
-            };
+            font-weight: ${euiTheme.font.weight.medium};
+            font-size: 11px;
             line-height: ${label.length > 10 ? "1rem" : "1.1429rem"};
           `}
           size="xs"
