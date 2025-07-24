@@ -11,7 +11,10 @@ type MoreMenuProps = {
   currentPage: string;
   currentSubpage: string | null;
   isCollapsed: boolean;
-  navigateTo: (primaryMenuItem: MenuItem, secondaryMenuItem?: SecondaryMenuItem) => void;
+  navigateTo: (
+    primaryMenuItem: MenuItem,
+    secondaryMenuItem?: SecondaryMenuItem
+  ) => void;
 };
 
 export const MoreMenu = ({
@@ -22,7 +25,6 @@ export const MoreMenu = ({
   isCollapsed,
   navigateTo,
 }: MoreMenuProps): JSX.Element | null => {
-
   if (overflowMenuItems.length === 0) return null;
   return (
     <SideNav.Popover
@@ -58,6 +60,7 @@ export const MoreMenu = ({
                       key={item.id}
                       iconType={item.iconType}
                       isCurrent={isCurrent}
+                      isCollapsed={isCollapsed}
                       href={item.href}
                       hasSubmenu={hasSubItems}
                       submenuPanelId={

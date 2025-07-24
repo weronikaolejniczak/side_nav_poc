@@ -1,11 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { FC, ReactNode, useCallback } from "react";
 import { css } from "@emotion/react";
-import {
-  EuiButtonIcon,
-  IconType,
-  useEuiTheme,
-} from "@elastic/eui";
+import { EuiButtonIcon, IconType, useEuiTheme } from "@elastic/eui";
 
 import { SideNav } from "../side_nav";
 import { useNestedMenu } from "./use_nested_menu";
@@ -14,6 +10,7 @@ export type PrimaryMenuItemProps = {
   children: ReactNode;
   iconType?: IconType;
   isCurrent?: boolean;
+  isCollapsed: boolean;
   href?: string;
   onClick?: () => void;
   hasSubmenu?: boolean;
@@ -24,6 +21,7 @@ export const PrimaryMenuItem: FC<PrimaryMenuItemProps> = ({
   children,
   iconType,
   isCurrent = false,
+  isCollapsed,
   href,
   onClick,
   hasSubmenu = false,
@@ -59,6 +57,7 @@ export const PrimaryMenuItem: FC<PrimaryMenuItemProps> = ({
       <SideNav.PrimaryMenuItem
         iconType={iconType}
         isCurrent={isCurrent}
+        isCollapsed={isCollapsed}
         href={href}
         onClick={handleClick}
         horizontal
