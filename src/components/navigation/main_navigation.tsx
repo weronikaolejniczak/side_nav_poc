@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { EuiButtonIcon, EuiText } from "@elastic/eui";
+import { EuiButtonIcon, EuiText, useIsWithinBreakpoints } from "@elastic/eui";
 import { useRef, KeyboardEvent } from "react";
 
 import { Content } from "../content";
@@ -23,12 +23,15 @@ export const MainNavigation = (): JSX.Element => {
   const {
     currentPage,
     currentSubpage,
-    isCollapsed,
+    isCollapsed: isCollapsedProp,
     isSidePanelOpen,
     navigateTo,
     sidePanelContent,
     toggleCollapsed,
   } = useNavigation();
+
+  const isMobile = useIsWithinBreakpoints(["xs", "s"]);
+  const isCollapsed = isMobile || isCollapsedProp;
 
   const { primaryMenuRef, visibleMenuItems, overflowMenuItems } =
     useResponsiveMenu(isCollapsed);
@@ -41,17 +44,21 @@ export const MainNavigation = (): JSX.Element => {
   return (
     <Layout isSidePanelOpen={isSidePanelOpen}>
       <TopBar>
-        <EuiButtonIcon
-          aria-label={
-            isCollapsed ? "Expand navigation menu" : "Collapse navigation menu"
-          }
-          aria-controls="primary-navigation"
-          aria-expanded={!isCollapsed}
-          color="text"
-          iconType={isCollapsed ? "transitionLeftIn" : "transitionLeftOut"}
-          onClick={toggleCollapsed}
-          size="s"
-        />
+        {!isMobile && (
+          <EuiButtonIcon
+            aria-label={
+              isCollapsed
+                ? "Expand navigation menu"
+                : "Collapse navigation menu"
+            }
+            aria-controls="primary-navigation"
+            aria-expanded={!isCollapsed}
+            color="text"
+            iconType={isCollapsed ? "transitionLeftIn" : "transitionLeftOut"}
+            onClick={toggleCollapsed}
+            size="s"
+          />
+        )}
       </TopBar>
       <SideNav>
         <SideNav.Logo label={LOGO.label} logoType={LOGO.logoType} />
