@@ -61,7 +61,6 @@ export const SideNavLogo = ({
           css={css`
             font-weight: ${euiTheme.font.weight.medium};
             font-size: 11px;
-            line-height: ${label.length > 10 ? "1rem" : "1.1429rem"};
           `}
           size="xs"
         >
