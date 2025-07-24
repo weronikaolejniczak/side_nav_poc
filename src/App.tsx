@@ -17,7 +17,7 @@ import { MainNavigation, NavigationProvider } from "./components/navigation";
 export default function App(): JSX.Element {
   return (
     <NavigationProvider>
-      <EuiProvider colorMode="light">
+      <EuiProvider>
         <MainNavigation />
       </EuiProvider>
     </NavigationProvider>
