@@ -15,6 +15,8 @@ import { hasSubmenu } from "../../utils/has_submenu";
 import { SubMenuContent } from "./sub_menu_content";
 import { MoreMenu } from "./more_menu";
 
+const FOOTER_ITEM_LIMIT = 5;
+
 export const MainNavigation = (): JSX.Element => {
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -83,7 +85,7 @@ export const MainNavigation = (): JSX.Element => {
           />
         </SideNav.PrimaryMenu>
         <SideNav.Footer>
-          {PRIMARY_MENU_FOOTER_ITEMS.map((item) => (
+          {PRIMARY_MENU_FOOTER_ITEMS.slice(0, FOOTER_ITEM_LIMIT).map((item) => (
             <SideNav.Popover
               key={item.id}
               isSidePanelOpen={!isCollapsed && item.id === sidePanelContent?.id}
