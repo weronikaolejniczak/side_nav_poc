@@ -57,8 +57,11 @@ export const SideNavPrimaryMenuItem = forwardRef<
           overflow: hidden;
           max-width: 100%;
           padding: 0 4px;
-          font-size: 11px;
-          font-weight: ${euiTheme.font.weight.medium};
+          ${!horizontal &&
+          `
+            font-size: 11px;
+            font-weight: ${euiTheme.font.weight.medium};
+          `}
 
           ${isSingleWord
             ? css`
