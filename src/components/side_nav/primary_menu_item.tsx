@@ -11,7 +11,6 @@ import {
 } from "@elastic/eui";
 
 import { useMenuItemClick } from "../../hooks/use_menu_item_click";
-import { useNavigation } from "../navigation";
 
 export type SideNavPrimaryMenuItemProps = {
   children: ReactNode;
@@ -21,6 +20,7 @@ export type SideNavPrimaryMenuItemProps = {
   iconType?: IconType;
   isCurrent: boolean;
   onClick?: () => void;
+  isCollapsed: boolean;
 };
 
 export const SideNavPrimaryMenuItem = forwardRef<
@@ -36,12 +36,12 @@ export const SideNavPrimaryMenuItem = forwardRef<
       iconType,
       isCurrent,
       onClick,
+      isCollapsed,
       ...props
     },
     ref: ForwardedRef<HTMLAnchorElement>
   ): JSX.Element => {
     const { euiTheme } = useEuiTheme();
-    const { isCollapsed } = useNavigation();
 
     const handleClick = useMenuItemClick(onClick);
 

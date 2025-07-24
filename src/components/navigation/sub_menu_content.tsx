@@ -2,24 +2,27 @@
 import { useRef } from "react";
 
 import { SecondaryMenu } from "../secondary_menu";
-import { MenuItem } from "../../types/navigation";
+import { MenuItem, SecondaryMenuItem } from "../../types/navigation";
 import { hasSubmenu } from "../../utils/has_submenu";
-import { useNavigation } from "./use_navigation";
 
 interface SubMenuContentProps {
   closePopover?: () => void;
   isPanel?: boolean;
   item: MenuItem;
+  currentPage: string;
+  currentSubpage: string | null;
+  navigateTo: (primaryMenuItem: MenuItem, secondaryMenuItem?: SecondaryMenuItem) => void;
 }
 
 export const SubMenuContent = ({
   closePopover,
   isPanel = false,
   item,
+  currentPage,
+  currentSubpage,
+  navigateTo,
 }: SubMenuContentProps): JSX.Element | null => {
   const mainRef = useRef<HTMLDivElement>(null);
-
-  const { navigateTo, currentPage, currentSubpage } = useNavigation();
 
   const handleClick = (item: MenuItem, subItem: MenuItem) => {
     subItem.href

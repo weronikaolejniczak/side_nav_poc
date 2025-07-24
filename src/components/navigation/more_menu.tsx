@@ -2,21 +2,26 @@
 import { SideNav } from "../side_nav";
 import { SecondaryMenu } from "../secondary_menu";
 import { NestedSecondaryMenu } from "../nested_secondary_menu";
-import { MenuItem } from "../../types/navigation";
+import { MenuItem, SecondaryMenuItem } from "../../types/navigation";
 import { hasSubmenu } from "../../utils/has_submenu";
-import { useNavigation } from "./use_navigation";
 
 type MoreMenuProps = {
   overflowMenuItems: MenuItem[];
   sidePanelContent?: MenuItem | null;
+  currentPage: string;
+  currentSubpage: string | null;
+  isCollapsed: boolean;
+  navigateTo: (primaryMenuItem: MenuItem, secondaryMenuItem?: SecondaryMenuItem) => void;
 };
 
 export const MoreMenu = ({
   overflowMenuItems,
   sidePanelContent,
+  currentPage,
+  currentSubpage,
+  isCollapsed,
+  navigateTo,
 }: MoreMenuProps): JSX.Element | null => {
-  const { currentPage, currentSubpage, isCollapsed, navigateTo } =
-    useNavigation();
 
   if (overflowMenuItems.length === 0) return null;
   return (
@@ -32,6 +37,7 @@ export const MoreMenu = ({
           )}
           iconType="boxesHorizontal"
           hasContent
+          isCollapsed={isCollapsed}
         >
           More
         </SideNav.PrimaryMenuItem>
@@ -123,6 +129,7 @@ export const MoreMenu = ({
                       closePopover();
                     }}
                     horizontal
+                    isCollapsed={isCollapsed}
                   >
                     {item.label}
                   </SideNav.PrimaryMenuItem>

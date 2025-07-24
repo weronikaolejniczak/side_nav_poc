@@ -8,27 +8,34 @@ import { Main } from "../main";
 import { SideNav } from "../side_nav";
 import { TopBar } from "../top_bar";
 import { LOGO, PRIMARY_MENU_FOOTER_ITEMS } from "../../constants";
-import { useNavigation } from "./use_navigation";
 import { useResponsiveMenu } from "./use_responsive_menu";
-import { MenuItem } from "../../types/navigation";
+import { MenuItem, SecondaryMenuItem } from "../../types/navigation";
 import { hasSubmenu } from "../../utils/has_submenu";
 import { SubMenuContent } from "./sub_menu_content";
 import { MoreMenu } from "./more_menu";
 
 const FOOTER_ITEM_LIMIT = 5;
 
-export const MainNavigation = (): JSX.Element => {
-  const mainRef = useRef<HTMLDivElement>(null);
+export interface MainNavigationProps {
+  currentPage: string;
+  currentSubpage: string | null;
+  sidePanelContent: MenuItem | null;
+  isCollapsed: boolean;
+  isSidePanelOpen: boolean;
+  toggleCollapsed: () => void;
+  navigateTo: (primaryMenuItem: MenuItem, secondaryMenuItem?: SecondaryMenuItem) => void;
+}
 
-  const {
-    currentPage,
-    currentSubpage,
-    isCollapsed: isCollapsedProp,
-    isSidePanelOpen,
-    navigateTo,
-    sidePanelContent,
-    toggleCollapsed,
-  } = useNavigation();
+export const MainNavigation = ({
+  currentPage,
+  currentSubpage,
+  sidePanelContent,
+  isCollapsed: isCollapsedProp,
+  isSidePanelOpen,
+  toggleCollapsed,
+  navigateTo,
+}: MainNavigationProps): JSX.Element => {
+  const mainRef = useRef<HTMLDivElement>(null);
 
   const isMobile = useIsWithinBreakpoints(["xs", "s"]);
   const isCollapsed = isMobile || isCollapsedProp;
@@ -42,7 +49,7 @@ export const MainNavigation = (): JSX.Element => {
   };
 
   return (
-    <Layout isSidePanelOpen={isSidePanelOpen}>
+    <Layout isSidePanelOpen={isSidePanelOpen} isCollapsed={isCollapsed}>
       <TopBar>
         {!isMobile && (
           <EuiButtonIcon
@@ -60,9 +67,9 @@ export const MainNavigation = (): JSX.Element => {
           />
         )}
       </TopBar>
-      <SideNav>
-        <SideNav.Logo label={LOGO.label} logoType={LOGO.logoType} />
-        <SideNav.PrimaryMenu ref={primaryMenuRef}>
+      <SideNav isCollapsed={isCollapsed}>
+        <SideNav.Logo label={LOGO.label} logoType={LOGO.logoType} isCollapsed={isCollapsed} />
+        <SideNav.PrimaryMenu ref={primaryMenuRef} isCollapsed={isCollapsed}>
           {visibleMenuItems.map((item) => (
             <SideNav.Popover
               key={item.id}
@@ -76,22 +83,33 @@ export const MainNavigation = (): JSX.Element => {
                   isCurrent={item.id === sidePanelContent?.id}
                   hasContent={hasSubmenu(item)}
                   onClick={() => handleMainItemClick(item)}
+                  isCollapsed={isCollapsed}
                 >
                   {item.label}
                 </SideNav.PrimaryMenuItem>
               }
             >
               {(closePopover) => (
-                <SubMenuContent item={item} closePopover={closePopover} />
+                <SubMenuContent 
+                  item={item} 
+                  closePopover={closePopover}
+                  currentPage={currentPage}
+                  currentSubpage={currentSubpage}
+                  navigateTo={navigateTo}
+                />
               )}
             </SideNav.Popover>
           ))}
           <MoreMenu
             overflowMenuItems={overflowMenuItems}
             sidePanelContent={sidePanelContent}
+            currentPage={currentPage}
+            currentSubpage={currentSubpage}
+            isCollapsed={isCollapsed}
+            navigateTo={navigateTo}
           />
         </SideNav.PrimaryMenu>
-        <SideNav.Footer>
+        <SideNav.Footer isCollapsed={isCollapsed}>
           {PRIMARY_MENU_FOOTER_ITEMS.slice(0, FOOTER_ITEM_LIMIT).map((item) => (
             <SideNav.Popover
               key={item.id}
@@ -116,7 +134,13 @@ export const MainNavigation = (): JSX.Element => {
               }
             >
               {(closePopover) => (
-                <SubMenuContent item={item} closePopover={closePopover} />
+                <SubMenuContent 
+                  item={item} 
+                  closePopover={closePopover}
+                  currentPage={currentPage}
+                  currentSubpage={currentSubpage}
+                  navigateTo={navigateTo}
+                />
               )}
             </SideNav.Popover>
           ))}
@@ -124,7 +148,13 @@ export const MainNavigation = (): JSX.Element => {
       </SideNav>
       {isSidePanelOpen && sidePanelContent && (
         <SideNav.Panel>
-          <SubMenuContent item={sidePanelContent} isPanel />
+          <SubMenuContent 
+            item={sidePanelContent} 
+            isPanel
+            currentPage={currentPage}
+            currentSubpage={currentSubpage}
+            navigateTo={navigateTo}
+          />
         </SideNav.Panel>
       )}
       <Main ref={mainRef}>

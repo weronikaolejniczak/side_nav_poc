@@ -2,10 +2,10 @@
 import { useEuiTheme } from "@elastic/eui";
 import { css } from "@emotion/react";
 import { ReactNode } from "react";
-import { useNavigation } from "./navigation";
 
 export type LayoutProps = {
   isSidePanelOpen: boolean;
+  isCollapsed: boolean;
   children: ReactNode;
 };
 
@@ -21,10 +21,10 @@ export type LayoutProps = {
  */
 export const Layout = ({
   isSidePanelOpen,
+  isCollapsed,
   children,
 }: LayoutProps): JSX.Element => {
   const { euiTheme } = useEuiTheme();
-  const { isCollapsed } = useNavigation();
 
   return (
     <div
