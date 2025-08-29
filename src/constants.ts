@@ -7,12 +7,6 @@ export const LOGO = {
 
 export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   {
-    id: "overview",
-    label: "Overview",
-    iconType: "info",
-    href: "/overview",
-  },
-  {
     id: "discover",
     label: "Discover",
     iconType: "discoverApp",
@@ -24,18 +18,24 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
     iconType: "dashboardApp",
     href: "/dashboards",
   },
-  { id: "alerts", label: "Alerts", iconType: "info", href: "/alerts" },
+  {
+    id: "overview",
+    label: "Overview",
+    iconType: "info",
+    href: "/overview",
+  },
+  { id: "alerts", label: "Alerts", iconType: "bell", href: "/alerts" },
   { id: "cases", label: "Cases", iconType: "casesApp", href: "/cases" },
   {
     id: "slos",
     label: "SLOs",
-    iconType: "info",
+    iconType: "visGauge",
     href: "/slos",
   },
   {
     id: "apps",
     label: "Apps",
-    iconType: "info",
+    iconType: "apps",
     href: "/apps/service-inventory",
     sections: [
       {
@@ -73,7 +73,7 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   {
     id: "infrastructure",
     label: "Infrastructure",
-    iconType: "info",
+    iconType: "storage",
     href: "/infrastructure/inventory",
     sections: [
       {
@@ -104,13 +104,13 @@ export const PRIMARY_MENU_ITEMS: MenuItem[] = [
   {
     id: "streams",
     label: "Streams",
-    iconType: "info",
+    iconType: "logstashQueue",
     href: "/streams",
   },
   {
     id: "machine-learning",
     label: "Machine learning",
-    iconType: "info",
+    iconType: "machineLearningApp",
     href: "/ml/overview",
     sections: [
       {
